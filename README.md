@@ -1,1 +1,1 @@
-# Rubik-s-_Cube_Solver
+# Rubiks-_Cube_Solver
