@@ -55,3 +55,9 @@ dkms.conf
 *.docx
 *.pdf
 *.mp4
+.vscode
+.vs
+cmake
+CMakeLists.txt
+CMakePresets.json
+vcpkg-configuration.json
