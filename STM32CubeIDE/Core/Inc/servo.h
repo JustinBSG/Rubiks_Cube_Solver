@@ -11,9 +11,18 @@
 #include "main.h"
 #include "tim.h"
 
-#define CENTRE_DEGREE 	94
-#define LEFT_90 		35
-#define RIGHT_90 		151
+#define CENTRE_DEGREE_1 	95
+#define LEFT_90_1 			37
+#define RIGHT_90_1 			153
+#define CENTRE_DEGREE_2 	88
+#define LEFT_90_2 			29
+#define RIGHT_90_2 			145
+#define CENTRE_DEGREE_3 	92
+#define LEFT_90_3 			31
+#define RIGHT_90_3 			150
+#define CENTRE_DEGREE_4 	94
+#define LEFT_90_4 			36
+#define RIGHT_90_4 			153
 #define PULL_DEGREE		00
 #define PUSH_DEGREE 	00
 
@@ -28,7 +37,7 @@ typedef enum {
 	west_back
 } servos;
 
-void servo_reset(void);
+void servo_init(void);
 void centre_0(servos);
 void clockwise_90(servos);
 void anticlockwise_90(servos);
