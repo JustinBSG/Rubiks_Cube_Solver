@@ -10,13 +10,13 @@
 void servo_init(void) {
 	for (uint8_t i = 1; i <= 4; i++)
 		servo_pull(i*2);
-	HAL_Delay(DELAY_TIME);
+	HAL_Delay(DELAY_TIME_P);
 	for (uint8_t i = 1; i <= 4; i++)
 		centre_0(i*2-1);
-	HAL_Delay(DELAY_TIME);
+	HAL_Delay(DELAY_TIME_90);
 	for (uint8_t i = 1; i <= 4; i++)
-			servo_push(i*2);
-	HAL_Delay(DELAY_TIME);
+		servo_push(i*2);
+	HAL_Delay(DELAY_TIME_P);
 }
 
 void centre_0(servos servo) {
@@ -84,16 +84,16 @@ void servo_pull(servos servo) {
 		uint8_t target = servo/2;
 		switch (target) {
 			case 1:
-				TIM4->CCR1 = PULL_DEGREE;
+				TIM4->CCR1 = PULL_DEGREE_1;
 				break;
 			case 2:
-				TIM4->CCR2 = PULL_DEGREE;
+				TIM4->CCR2 = PULL_DEGREE_2;
 				break;
 			case 3:
-				TIM4->CCR3 = PULL_DEGREE;
+				TIM4->CCR3 = PULL_DEGREE_3;
 				break;
 			case 4:
-				TIM4->CCR4 = PULL_DEGREE;
+				TIM4->CCR4 = PULL_DEGREE_4;
 				break;
 		}
 	}
@@ -104,16 +104,16 @@ void servo_push(servos servo) {
 		uint8_t target = servo/2;
 		switch (target) {
 			case 1:
-				TIM4->CCR1 = PUSH_DEGREE;
+				TIM4->CCR1 = PUSH_DEGREE_1;
 				break;
 			case 2:
-				TIM4->CCR2 = PUSH_DEGREE;
+				TIM4->CCR2 = PUSH_DEGREE_2;
 				break;
 			case 3:
-				TIM4->CCR3 = PUSH_DEGREE;
+				TIM4->CCR3 = PUSH_DEGREE_3;
 				break;
 			case 4:
-				TIM4->CCR4 = PUSH_DEGREE;
+				TIM4->CCR4 = PUSH_DEGREE_4;
 				break;
 		}
 	}

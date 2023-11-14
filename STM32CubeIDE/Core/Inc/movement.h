@@ -11,8 +11,6 @@
 #include "main.h"
 #include "servo.h"
 
-#define DELAY_TIME 100
-
 void movement_F(void);
 void movement_aF(void);
 void movement_R(void);

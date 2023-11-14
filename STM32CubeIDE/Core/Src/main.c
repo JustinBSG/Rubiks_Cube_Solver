@@ -96,7 +96,9 @@ int main(void)
   LCD_DrawString(0, 0, "PSC: ");
   LCD_DrawString(0, HEIGHT_EN_CHAR, "ARR: ");
   LCD_DrawString(0, 2*HEIGHT_EN_CHAR, "CCR1: ");
-//  LCD_DrawString(0, 3*HEIGHT_EN_CHAR, "CCR2: ");
+  LCD_DrawString(0, 3*HEIGHT_EN_CHAR, "CCR2: ");
+  LCD_DrawString(0, 4*HEIGHT_EN_CHAR, "CCR3: ");
+  LCD_DrawString(0, 5*HEIGHT_EN_CHAR, "CCR4: ");
 
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
@@ -107,9 +109,9 @@ int main(void)
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3);
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
   servo_init();
-  uint8_t flag_1 = 0, flag_2 = 0;
+  uint8_t flag_1 = 0, flag_2 = 0, flag_3 = 0, flag_4 = 0;
   uint8_t pre_state_1 = 0, pre_state_2 = 0;
-  uint16_t last_tick = 0;
+  uint16_t last_tick_1 = 0, last_tick_2 = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -121,31 +123,65 @@ int main(void)
     /* USER CODE BEGIN 3 */
 	  if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == SET && pre_state_1 == 0) {
 		  pre_state_1 = 1;
-	  } else if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == RESET && pre_state_1 == 1) {
+		  last_tick_1 = HAL_GetTick();
+	  } else if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == RESET && pre_state_1 == 1 && HAL_GetTick() - last_tick_1 < 500) {
 		  flag_1++;
-		  if (flag_1 == 4)
+		  if (flag_1 == 2)
 			  flag_1 = 0;
-//		  TIM3->CCR1 += 5;
 		  pre_state_1 = 0;
 	  }
-
-//	  if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == SET && pre_state_2 == 0) {
-//		  pre_state_2 = 1;
-//	  } else if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == RESET && pre_state_2 == 1) {
+//	  else if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == RESET && pre_state_2 == 1 && HAL_GetTick() - last_tick_1 >= 500) {
 //		  flag_2++;
-//		  if (flag_2 == 4)
+//		  if (flag_2 == 2)
 //			  flag_2 = 0;
+//		  pre_state_1 = 0;
+//	  }
+
+	  if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == SET && pre_state_2 == 0) {
+		  pre_state_2 = 1;
+		  last_tick_2 = HAL_GetTick();
+	  } else if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == RESET && pre_state_2 == 1 && HAL_GetTick() - last_tick_2 < 500) {
+		  flag_3++;
+		  if (flag_3 == 2)
+			  flag_3 = 0;
+		  pre_state_2 = 0;
+	  }
+//	  else if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == RESET && pre_state_2 == 1 && HAL_GetTick() - last_tick_2 >= 500) {
+//		  flag_4++;
+//		  if (flag_4 == 2)
+//			  flag_4 = 0;
 //		  pre_state_2 = 0;
 //	  }
 
 	  if (flag_1 == 0)
-		  centre_0(west_front);
-	  else if (flag_1 == 1)
-		  clockwise_90(west_front);
-	  else if (flag_1 == 2)
-		  centre_0(west_front);
-	  else if (flag_1 == 3)
-		  anticlockwise_90(west_front);
+		  servo_pull(east_back);
+	  else
+		  servo_push(east_back);
+
+//	  if (flag_2 == 0)
+//	  		  servo_pull(east_back);
+//	  	  else
+//	  		  servo_push(east_back);
+
+	  if (flag_3 == 0)
+	  		  servo_pull(south_back);
+	  	  else
+	  		  servo_push(south_back);
+
+//	  if (flag_4 == 0)
+//	  		  servo_pull(west_back);
+//	  	  else
+//	  		  servo_push(west_back);
+
+
+//	  if (flag_1 == 0)
+//		  centre_0(north_front);
+//	  else if (flag_1 == 1)
+//		  clockwise_90(north_front);
+//	  else if (flag_1 == 2)
+//		  centre_0(north_front);
+//	  else if (flag_1 == 3)
+//		  anticlockwise_90(north_front);
 
 //	  if (flag_2 == 0)
 //		  clockwise_90(east_front);
@@ -160,15 +196,21 @@ int main(void)
 	  char ARR[6];
 	  char CCR1[6];
 	  char CCR2[6];
+	  char CCR3[6];
+	  char CCR4[6];
 
-	  sprintf(PSC, "%d", TIM3->PSC+1);
-	  sprintf(ARR, "%d", TIM3->ARR+1);
-	  sprintf(CCR1, "%d ", TIM3->CCR1);
-//	  sprintf(CCR2, "%d ", TIM3->CCR2);
+	  sprintf(PSC, "%d", TIM4->PSC+1);
+	  sprintf(ARR, "%d", TIM4->ARR+1);
+	  sprintf(CCR1, "%d ", TIM4->CCR1);
+	  sprintf(CCR2, "%d ", TIM4->CCR2);
+	  sprintf(CCR3, "%d ", TIM4->CCR3);
+	  sprintf(CCR4, "%d ", TIM4->CCR4);
 	  LCD_DrawString(7*WIDTH_EN_CHAR, 0, PSC);
 	  LCD_DrawString(7*WIDTH_EN_CHAR, HEIGHT_EN_CHAR, ARR);
 	  LCD_DrawString(7*WIDTH_EN_CHAR, 2*HEIGHT_EN_CHAR, CCR1);
 	  LCD_DrawString(7*WIDTH_EN_CHAR, 3*HEIGHT_EN_CHAR, CCR2);
+	  LCD_DrawString(7*WIDTH_EN_CHAR, 4*HEIGHT_EN_CHAR, CCR3);
+	  LCD_DrawString(7*WIDTH_EN_CHAR, 5*HEIGHT_EN_CHAR, CCR4);
 
   }
   /* USER CODE END 3 */

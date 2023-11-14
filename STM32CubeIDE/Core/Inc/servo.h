@@ -11,6 +11,10 @@
 #include "main.h"
 #include "tim.h"
 
+#define DELAY_TIME_90 	500
+#define DELAY_TIME_180 	1000
+#define DELAY_TIME_P	500
+
 #define CENTRE_DEGREE_1 	95
 #define LEFT_90_1 			37
 #define RIGHT_90_1 			153
@@ -23,8 +27,14 @@
 #define CENTRE_DEGREE_4 	94
 #define LEFT_90_4 			36
 #define RIGHT_90_4 			153
-#define PULL_DEGREE		00
-#define PUSH_DEGREE 	00
+#define PULL_DEGREE_1		30	// north
+#define PUSH_DEGREE_1 		100
+#define PULL_DEGREE_2		30	// east
+#define PUSH_DEGREE_2 		90
+#define PULL_DEGREE_3		30	// south
+#define PUSH_DEGREE_3 		90
+#define PULL_DEGREE_4		25	// west
+#define PUSH_DEGREE_4 		90
 
 typedef enum {
 	north_front = 1,
