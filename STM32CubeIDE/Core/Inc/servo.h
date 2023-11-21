@@ -12,7 +12,7 @@
 #include "tim.h"
 
 #define DELAY_TIME_90 	500
-#define DELAY_TIME_180 	1000
+#define DELAY_TIME_180 	900
 #define DELAY_TIME_P	500
 
 #define CENTRE_DEGREE_1 	95
@@ -32,7 +32,7 @@
 #define PULL_DEGREE_2		30	// east
 #define PUSH_DEGREE_2 		90
 #define PULL_DEGREE_3		30	// south
-#define PUSH_DEGREE_3 		90
+#define PUSH_DEGREE_3 		100
 #define PULL_DEGREE_4		25	// west
 #define PUSH_DEGREE_4 		90
 
@@ -48,6 +48,7 @@ typedef enum {
 } servos;
 
 void servo_init(void);
+void insert_cube(void);
 void centre_0(servos);
 void clockwise_90(servos);
 void anticlockwise_90(servos);

@@ -35,11 +35,11 @@ void movement_aF(void) {
 void movement_R(void) {
 	clockwise_90(east_front);
 	HAL_Delay(DELAY_TIME_90);
-	servo_pull(east_front);
+	servo_pull(east_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(east_front);
 	HAL_Delay(DELAY_TIME_90);
-	servo_push(east_front);
+	servo_push(east_back);
 	HAL_Delay(DELAY_TIME_P);
 }
 
@@ -47,11 +47,11 @@ void movement_R(void) {
 void movement_aR(void) {
 	anticlockwise_90(east_front);
 	HAL_Delay(DELAY_TIME_90);
-	servo_pull(east_front);
+	servo_pull(east_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(east_front);
 	HAL_Delay(DELAY_TIME_90);
-	servo_push(east_front);
+	servo_push(east_back);
 	HAL_Delay(DELAY_TIME_P);
 }
 
@@ -59,11 +59,11 @@ void movement_aR(void) {
 void movement_L(void) {
 	clockwise_90(west_front);
 	HAL_Delay(DELAY_TIME_90);
-	servo_pull(west_front);
+	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(west_front);
 	HAL_Delay(DELAY_TIME_90);
-	servo_push(west_front);
+	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 }
 
@@ -71,11 +71,11 @@ void movement_L(void) {
 void movement_aL(void) {
 	anticlockwise_90(west_front);
 	HAL_Delay(DELAY_TIME_90);
-	servo_pull(west_front);
+	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(west_front);
 	HAL_Delay(DELAY_TIME_90);
-	servo_push(west_front);
+	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 }
 
@@ -83,11 +83,11 @@ void movement_aL(void) {
 void movement_B(void) {
 	clockwise_90(north_front);
 	HAL_Delay(DELAY_TIME_90);
-	servo_pull(north_front);
+	servo_pull(north_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(north_front);
 	HAL_Delay(DELAY_TIME_90);
-	servo_push(north_front);
+	servo_push(north_back);
 	HAL_Delay(DELAY_TIME_P);
 }
 
@@ -95,11 +95,11 @@ void movement_B(void) {
 void movement_aB(void) {
 	anticlockwise_90(north_front);
 	HAL_Delay(DELAY_TIME_90);
-	servo_pull(north_front);
+	servo_pull(north_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(north_front);
 	HAL_Delay(DELAY_TIME_90);
-	servo_push(north_front);
+	servo_push(north_back);
 	HAL_Delay(DELAY_TIME_P);
 }
 

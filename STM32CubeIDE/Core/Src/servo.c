@@ -7,6 +7,9 @@
 
 #include "servo.h"
 
+GPIO_PinState HAL_GPIO_ReadPin(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin);
+extern start;
+
 void servo_init(void) {
 	for (uint8_t i = 1; i <= 4; i++)
 		servo_pull(i*2);
@@ -17,6 +20,27 @@ void servo_init(void) {
 	for (uint8_t i = 1; i <= 4; i++)
 		servo_push(i*2);
 	HAL_Delay(DELAY_TIME_P);
+}
+
+void insert_cube(void) {
+	if (start == 0) {
+		for (uint8_t i = 1; i <= 4; i++)
+			servo_pull(i*2);
+		HAL_Delay(DELAY_TIME_P);
+		for (uint8_t i = 1; i <= 4; i++)
+				centre_0(i*2-1);
+		HAL_Delay(DELAY_TIME_90);
+		for (uint8_t i = 3; i <= 4; i++)
+				servo_push(i*2);
+		HAL_Delay(DELAY_TIME_P);
+		start++;
+	}
+	if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == SET) {
+		for (uint8_t i = 1; i <= 4; i++)
+			servo_push(i*2);
+		HAL_Delay(DELAY_TIME_P);
+	}
+
 }
 
 void centre_0(servos servo) {
@@ -87,7 +111,7 @@ void servo_pull(servos servo) {
 				TIM4->CCR1 = PULL_DEGREE_1;
 				break;
 			case 2:
-				TIM4->CCR2 = PULL_DEGREE_2;
+				TIM2->CCR3 = PULL_DEGREE_2;
 				break;
 			case 3:
 				TIM4->CCR3 = PULL_DEGREE_3;
@@ -107,7 +131,7 @@ void servo_push(servos servo) {
 				TIM4->CCR1 = PUSH_DEGREE_1;
 				break;
 			case 2:
-				TIM4->CCR2 = PUSH_DEGREE_2;
+				TIM2->CCR3 = PUSH_DEGREE_2;
 				break;
 			case 3:
 				TIM4->CCR3 = PUSH_DEGREE_3;

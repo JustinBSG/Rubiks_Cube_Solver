@@ -24,8 +24,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdio.h>
 #include "lcd.h"
 #include "servo.h"
+#include "movement.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -46,7 +48,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+uint8_t start = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -91,27 +93,21 @@ int main(void)
   MX_FSMC_Init();
   MX_TIM3_Init();
   MX_TIM4_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  LCD_INIT();
-  LCD_DrawString(0, 0, "PSC: ");
-  LCD_DrawString(0, HEIGHT_EN_CHAR, "ARR: ");
-  LCD_DrawString(0, 2*HEIGHT_EN_CHAR, "CCR1: ");
-  LCD_DrawString(0, 3*HEIGHT_EN_CHAR, "CCR2: ");
-  LCD_DrawString(0, 4*HEIGHT_EN_CHAR, "CCR3: ");
-  LCD_DrawString(0, 5*HEIGHT_EN_CHAR, "CCR4: ");
-
+  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
+  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3);
+  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
-  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
-  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_2);
-  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3);
-  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
+
+  LCD_INIT();
   servo_init();
-  uint8_t flag_1 = 0, flag_2 = 0, flag_3 = 0, flag_4 = 0;
-  uint8_t pre_state_1 = 0, pre_state_2 = 0;
-  uint16_t last_tick_1 = 0, last_tick_2 = 0;
+  uint32_t last_tick = 0;
+  uint8_t flag = 4;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -121,96 +117,47 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == SET && pre_state_1 == 0) {
-		  pre_state_1 = 1;
-		  last_tick_1 = HAL_GetTick();
-	  } else if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == RESET && pre_state_1 == 1 && HAL_GetTick() - last_tick_1 < 500) {
-		  flag_1++;
-		  if (flag_1 == 2)
-			  flag_1 = 0;
-		  pre_state_1 = 0;
-	  }
-//	  else if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == RESET && pre_state_2 == 1 && HAL_GetTick() - last_tick_1 >= 500) {
-//		  flag_2++;
-//		  if (flag_2 == 2)
-//			  flag_2 = 0;
-//		  pre_state_1 = 0;
+//	  insert_cube();
+//	  if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == SET) {
+//		  if (HAL_GetTick() - last_tick < 100) {
+//			  	  char string[20];
+//			  	  sprintf(string, "It is now case %d", flag);
+//				  LCD_DrawString(0, 0, string);
+//		  }
+//		  switch (flag) {
+//			  case 0:
+//				  movement_F();
+//				  movement_aF();
+//				  break;
+//			  case 1:
+//				  movement_R();
+//				  movement_aR();
+//				  break;
+//			  case 2:
+//				  movement_L();
+//				  movement_aL();
+//				  break;
+//			  case 3:
+//				  movement_B();
+//				  movement_aB();
+//				  break;
+//			  case 4:
+//				  movement_U();
+//				  movement_aU();
+//				  break;
+//			  case 5:
+//				  servo_pull(east_back);
+//				  servo_pull(north_back);
+//				  HAL_Delay(10000);
+//				  servo_push(east_back);
+//				  servo_push(north_back);
+//				  HAL_Delay(DELAY_TIME_P);
+//				  break;
+//		  }
+//		  flag++;
+//		  if (flag == 6)
+//			  flag = 4;
 //	  }
-
-	  if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == SET && pre_state_2 == 0) {
-		  pre_state_2 = 1;
-		  last_tick_2 = HAL_GetTick();
-	  } else if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == RESET && pre_state_2 == 1 && HAL_GetTick() - last_tick_2 < 500) {
-		  flag_3++;
-		  if (flag_3 == 2)
-			  flag_3 = 0;
-		  pre_state_2 = 0;
-	  }
-//	  else if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == RESET && pre_state_2 == 1 && HAL_GetTick() - last_tick_2 >= 500) {
-//		  flag_4++;
-//		  if (flag_4 == 2)
-//			  flag_4 = 0;
-//		  pre_state_2 = 0;
-//	  }
-
-	  if (flag_1 == 0)
-		  servo_pull(east_back);
-	  else
-		  servo_push(east_back);
-
-//	  if (flag_2 == 0)
-//	  		  servo_pull(east_back);
-//	  	  else
-//	  		  servo_push(east_back);
-
-	  if (flag_3 == 0)
-	  		  servo_pull(south_back);
-	  	  else
-	  		  servo_push(south_back);
-
-//	  if (flag_4 == 0)
-//	  		  servo_pull(west_back);
-//	  	  else
-//	  		  servo_push(west_back);
-
-
-//	  if (flag_1 == 0)
-//		  centre_0(north_front);
-//	  else if (flag_1 == 1)
-//		  clockwise_90(north_front);
-//	  else if (flag_1 == 2)
-//		  centre_0(north_front);
-//	  else if (flag_1 == 3)
-//		  anticlockwise_90(north_front);
-
-//	  if (flag_2 == 0)
-//		  clockwise_90(east_front);
-//	  else if (flag_2 == 1)
-//		  centre_0(east_front);
-//	  else if (flag_2 == 2)
-//		  anticlockwise_90(east_front);
-//	  else if (flag_2 == 3)
-//		  centre_0(east_front);
-
-	  char PSC[6];
-	  char ARR[6];
-	  char CCR1[6];
-	  char CCR2[6];
-	  char CCR3[6];
-	  char CCR4[6];
-
-	  sprintf(PSC, "%d", TIM4->PSC+1);
-	  sprintf(ARR, "%d", TIM4->ARR+1);
-	  sprintf(CCR1, "%d ", TIM4->CCR1);
-	  sprintf(CCR2, "%d ", TIM4->CCR2);
-	  sprintf(CCR3, "%d ", TIM4->CCR3);
-	  sprintf(CCR4, "%d ", TIM4->CCR4);
-	  LCD_DrawString(7*WIDTH_EN_CHAR, 0, PSC);
-	  LCD_DrawString(7*WIDTH_EN_CHAR, HEIGHT_EN_CHAR, ARR);
-	  LCD_DrawString(7*WIDTH_EN_CHAR, 2*HEIGHT_EN_CHAR, CCR1);
-	  LCD_DrawString(7*WIDTH_EN_CHAR, 3*HEIGHT_EN_CHAR, CCR2);
-	  LCD_DrawString(7*WIDTH_EN_CHAR, 4*HEIGHT_EN_CHAR, CCR3);
-	  LCD_DrawString(7*WIDTH_EN_CHAR, 5*HEIGHT_EN_CHAR, CCR4);
 
   }
   /* USER CODE END 3 */
