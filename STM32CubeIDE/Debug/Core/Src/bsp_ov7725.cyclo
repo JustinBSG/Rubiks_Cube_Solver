@@ -1,0 +1,13 @@
+../Core/Src/bsp_ov7725.c:118:13:Ov7725_Init	6
+../Core/Src/bsp_ov7725.c:152:6:ImagDisp	3
+../Core/Src/bsp_ov7725.c:170:6:initArray	2
+../Core/Src/bsp_ov7725.c:176:5:detect	37
+../Core/Src/bsp_ov7725.c:216:6:int2RGB	1
+../Core/Src/bsp_ov7725.c:222:6:printRGB	1
+../Core/Src/bsp_ov7725.c:234:6:printColor	6
+../Core/Src/bsp_ov7725.c:267:6:printColorRGB	3
+../Core/Src/bsp_ov7725.c:277:6:sumRGB	1
+../Core/Src/bsp_ov7725.c:285:6:averageRGB	1
+../Core/Src/bsp_ov7725.c:289:6:detect_sum	2
+../Core/Src/bsp_ov7725.c:296:6:writeColorIntoArray	7
+../Core/Src/bsp_ov7725.c:324:6:ReadSquare	4
