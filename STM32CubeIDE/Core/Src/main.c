@@ -18,10 +18,17 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "tim.h"
+#include "usart.h"
+#include "gpio.h"
+#include "fsmc.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <stdio.h>
+#include "lcd.h"
+#include "servo.h"
+#include "movement.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -42,12 +49,11 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+uint8_t start = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-static void MX_GPIO_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -85,8 +91,27 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_TIM3_Init();
+  MX_TIM4_Init();
+  MX_FSMC_Init();
+  MX_TIM2_Init();
+  MX_TIM8_Init();
+  MX_TIM1_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
+  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3);
+  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
 
+  LCD_INIT();
+  servo_init();
+  uint32_t last_tick = 0;
+  uint8_t flag = 4;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -96,6 +121,48 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+//	  insert_cube();
+//	  if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == SET) {
+//		  if (HAL_GetTick() - last_tick < 100) {
+//			  	  char string[20];
+//			  	  sprintf(string, "It is now case %d", flag);
+//				  LCD_DrawString(0, 0, string);
+//		  }
+//		  switch (flag) {
+//			  case 0:
+//				  movement_F();
+//				  movement_aF();
+//				  break;
+//			  case 1:
+//				  movement_R();
+//				  movement_aR();
+//				  break;
+//			  case 2:
+//				  movement_L();
+//				  movement_aL();
+//				  break;
+//			  case 3:
+//				  movement_B();
+//				  movement_aB();
+//				  break;
+//			  case 4:
+//				  movement_U();
+//				  movement_aU();
+//				  break;
+//			  case 5:
+//				  servo_pull(east_back);
+//				  servo_pull(north_back);
+//				  HAL_Delay(10000);
+//				  servo_push(east_back);
+//				  servo_push(north_back);
+//				  HAL_Delay(DELAY_TIME_P);
+//				  break;
+//		  }
+//		  flag++;
+//		  if (flag == 6)
+//			  flag = 4;
+//	  }
+
   }
   /* USER CODE END 3 */
 }
@@ -137,24 +204,6 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-}
-
-/**
-  * @brief GPIO Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_GPIO_Init(void)
-{
-/* USER CODE BEGIN MX_GPIO_Init_1 */
-/* USER CODE END MX_GPIO_Init_1 */
-
-  /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOC_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
-
-/* USER CODE BEGIN MX_GPIO_Init_2 */
-/* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */

@@ -51,5 +51,13 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+.DS_Store
 *.docx
 *.pdf
+*.mp4
+.vscode
+.vs
+cmake
+CMakeLists.txt
+CMakePresets.json
+vcpkg-configuration.json
