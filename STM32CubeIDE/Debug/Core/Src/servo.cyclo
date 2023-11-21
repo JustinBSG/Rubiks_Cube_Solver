@@ -1,6 +1,7 @@
-../Core/Src/servo.c:10:6:servo_reset	1
-../Core/Src/servo.c:14:6:centre_0	6
-../Core/Src/servo.c:34:6:clockwise_90	6
-../Core/Src/servo.c:54:6:anticlockwise_90	6
-../Core/Src/servo.c:74:6:servo_pull	6
-../Core/Src/servo.c:94:6:servo_push	6
+../Core/Src/servo.c:13:6:servo_init	4
+../Core/Src/servo.c:25:6:insert_cube	7
+../Core/Src/servo.c:46:6:centre_0	6
+../Core/Src/servo.c:66:6:clockwise_90	6
+../Core/Src/servo.c:86:6:anticlockwise_90	6
+../Core/Src/servo.c:106:6:servo_pull	6
+../Core/Src/servo.c:126:6:servo_push	6
