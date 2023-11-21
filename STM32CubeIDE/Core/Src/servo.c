@@ -111,13 +111,13 @@ void servo_pull(servos servo) {
 				TIM4->CCR1 = PULL_DEGREE_1;
 				break;
 			case 2:
-				TIM2->CCR3 = PULL_DEGREE_2;
+				TIM1->CCR1 = PULL_DEGREE_2;
 				break;
 			case 3:
-				TIM4->CCR3 = PULL_DEGREE_3;
+				TIM2->CCR1 = PULL_DEGREE_3;
 				break;
 			case 4:
-				TIM4->CCR4 = PULL_DEGREE_4;
+				TIM8->CCR4 = PULL_DEGREE_4;
 				break;
 		}
 	}
@@ -131,13 +131,13 @@ void servo_push(servos servo) {
 				TIM4->CCR1 = PUSH_DEGREE_1;
 				break;
 			case 2:
-				TIM2->CCR3 = PUSH_DEGREE_2;
+				TIM1->CCR1 = PUSH_DEGREE_2;
 				break;
 			case 3:
-				TIM4->CCR3 = PUSH_DEGREE_3;
+				TIM2->CCR1 = PUSH_DEGREE_3;
 				break;
 			case 4:
-				TIM4->CCR4 = PUSH_DEGREE_4;
+				TIM8->CCR4 = PUSH_DEGREE_4;
 				break;
 		}
 	}
