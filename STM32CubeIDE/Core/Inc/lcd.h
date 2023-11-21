@@ -32,6 +32,9 @@
 #define      WIDTH_EN_CHAR		8	      
 #define      HEIGHT_EN_CHAR		16		    
 
+#define      LCD_Default_Max_Width		  240
+#define      LCD_Default_Max_Heigth		320
+
 #define      GetGBKCode( ucBuffer, usChar )  	 
 
  
@@ -40,7 +43,8 @@
 #define      GREY                          0xF7DE	  
 #define      BLUE                          0x001F	  
 #define      GREEN                         0x07E0	    
-#define      RED                           0xF800	  
+#define      RED                           0xF800
+#define		 ORANGE						   0xFC60
 #define      MAGENTA                       0xF81F	 
 #define      CYAN                          0x7FFF	   
 #define      YELLOW                        0xFFE0	 
@@ -62,10 +66,15 @@ void            LCD_OpenWindow		( uint16_t usC, uint16_t usP, uint16_t usWidth, 
 void            LCD_Clear		( uint16_t usC, uint16_t usP, uint16_t usWidth, uint16_t usHeight, uint16_t usColor );
 uint16_t        LCD_GetPointPixel	( uint16_t usC , uint16_t usP );
 void            LCD_DrawLine		( uint16_t usC1, uint16_t usP1, uint16_t usC2, uint16_t usP2, uint16_t usColor );
-void            LCD_DrawChar		( uint16_t usC, uint16_t usP, const char cChar);
-void            LCD_DrawString		( uint16_t usC, uint16_t usP, const char * pStr);
+void            LCD_DrawChar		( uint16_t usC, uint16_t usP, uint8_t cChar);
+void            LCD_DrawString		( uint16_t usC, uint16_t usP, uint8_t * pStr);
 void            LCD_DrawDot		( uint16_t usC, uint16_t usP, uint16_t usColor );
-void 		LCD_DrawEllipse		( uint16_t usC, uint16_t usP, uint16_t SR, uint16_t LR, uint16_t usColor);
-void 		LCD_DrawMyName		(void);
+void 		LCD_DrawCircle		( uint16_t usC, uint16_t usP, uint16_t R, uint16_t usColor);
+void LCD_DrawCross ( uint16_t usX, uint16_t usY );
+void LCD_DrawChar_Color ( uint16_t usC, uint16_t usP, const char cChar, uint16_t usColor_Background, uint16_t usColor_Foreground );
+void LCD_DrawString_Color ( uint16_t usC, uint16_t usP, const char * pStr, uint16_t usColor_Background, uint16_t usColor_Foreground );
+void LCD_GramScan ( uint8_t ucOption );
+void				 LCD_Cam_Gram(void);
+
 #endif 
 
