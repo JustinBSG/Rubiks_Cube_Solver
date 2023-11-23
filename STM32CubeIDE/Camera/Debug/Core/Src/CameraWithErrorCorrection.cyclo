@@ -1,4 +1,0 @@
-../Core/Src/CameraWithErrorCorrection.c:16:6:writeDataIntoAllFaces	2
-../Core/Src/CameraWithErrorCorrection.c:22:6:printArray	1
-../Core/Src/CameraWithErrorCorrection.c:26:5:checkingAllFaces	13
-../Core/Src/CameraWithErrorCorrection.c:47:5:CameraWithErrorCorrection	5
