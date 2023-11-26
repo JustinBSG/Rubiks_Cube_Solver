@@ -50,7 +50,7 @@ void ReadInput(char input[], int *size, char listOfCommand[][SIZE_OF_ONE_MOVEMEN
  *
  * @param Movement[SIZE_OF_ONE_MOVEMENT] character array that store one command of movement
  */
-void makeOneMovement(char Movement[SIZE_OF_ONE_MOVEMENT]) {
+void makeOneMovement(char Movement[]) {
 	switch (Movement[0]) {
 		case 'F':
 			if (Movement[2] != '\0')
@@ -273,36 +273,55 @@ void SolveTheCube(char listOfCommand[][SIZE_OF_ONE_MOVEMENT], int size) {
 
 void ScanCube(void) {
 	for (uint8_t steps = 1; steps <= 6; steps++) {
-		char stage;
+		char signal_r;
+		char signal_t = 'T';
 		switch (steps) {
 			// up
 			case 1: {
-				HAL_UART_Receive(&huart1, &stage, 1, 0xFFFF);
+				movement_scan_up();
+				HAL_UART_Transmit(&huart1, &signal_t, 1, 0xFFFF); // ackonwledge Camera Board to capture image
+				HAL_UART_Receive(&huart1, &signal_r, 1, 0xFFFF); // Camera Board finish capturing image
+				movement_scan_up_r();
 				break;
 			}
 			// north
 			case 2: {
-				HAL_UART_Receive(&huart1, &stage, 1, 0xFFFF);
+				movement_scan_north();
+				HAL_UART_Transmit(&huart1, &signal_t, 1, 0xFFFF);
+				HAL_UART_Receive(&huart1, &signal_r, 1, 0xFFFF);
+				movement_scan_north_r();
 				break;
 			}
 			// east
 			case 3: {
-				HAL_UART_Receive(&huart1, &stage, 1, 0xFFFF);
+				movement_scan_east();
+				HAL_UART_Transmit(&huart1, &signal_t, 1, 0xFFFF);
+				HAL_UART_Receive(&huart1, &signal_r, 1, 0xFFFF);
+				movement_scan_east_r();
 				break;
 			}
 			// south
 			case 4: {
-				HAL_UART_Receive(&huart1, &stage, 1, 0xFFFF);
+				movement_scan_south();
+				HAL_UART_Transmit(&huart1, &signal_t, 1, 0xFFFF);
+				HAL_UART_Receive(&huart1, &signal_r, 1, 0xFFFF);
+				movement_scan_south_r();
 				break;
 			}
 			// west
 			case 5: {
-				HAL_UART_Receive(&huart1, &stage, 1, 0xFFFF);
+				movement_scan_west();
+				HAL_UART_Transmit(&huart1, &signal_t, 1, 0xFFFF);
+				HAL_UART_Receive(&huart1, &signal_r, 1, 0xFFFF);
+				movement_scan_west_r();
 				break;
 			}
 			// down
 			case 6: {
-				HAL_UART_Receive(&huart1, &stage, 1, 0xFFFF);
+				movement_scan_down();
+				HAL_UART_Transmit(&huart1, &signal_t, 1, 0xFFFF);
+				HAL_UART_Receive(&huart1, &signal_r, 1, 0xFFFF);
+				movement_scan_down_r();
 				break;
 			}
 		}
@@ -319,32 +338,29 @@ void ScanCube(void) {
  */
 void mode(uint8_t choice) {
 	switch (choice) {
-		case 1:
+		case 1: {
 			char listOfCommand[100][SIZE_OF_ONE_MOVEMENT];
 			char receive[100];
-			char stage;
+			char stage, signal;
 			int size;
-			if (start == 0) {
-				stage = '1';
-				HAL_UART_Transmit(&huart1, &stage, 1, 0xFFFF);
-				insert_cube(&start);
-			} else if (start == 2) {
-				stage = '2';
-				HAL_UART_Transmit(&huart1, &stage, 1, 0xFFFF);
-				ScanCube();
-				stage = '3';
-				HAL_UART_Transmit(&huart1, &stage, 1, 0xFFFF);
-				ReadInput(receive, &size, listOfCommand);
-				SolveTheCube(listOfCommand, size);
-				remove_cube();
-				while (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == RESET);
-				stage = '4';
-				HAL_UART_Transmit(&huart1, &stage, 1, 0xFFFF);
-			}
+			stage = '1';
+			HAL_UART_Transmit(&huart1, &stage, 1, 0xFFFF);
+			insert_cube();
+			stage = '2';
+			HAL_UART_Transmit(&huart1, &stage, 1, 0xFFFF);
+			ScanCube();
+			stage = '3';
+			HAL_UART_Transmit(&huart1, &stage, 1, 0xFFFF);
+			ReadInput(receive, &size, listOfCommand);
+			SolveTheCube(listOfCommand, size);
+			remove_cube();
+			stage = '4';
+			HAL_UART_Transmit(&huart1, &stage, 1, 0xFFFF);
+			HAL_UART_Receive(&huart1, &signal, 1, 0xFFFF);
 			break;
+		}
 		case 2:
 			break;
 		default:
-			continue;
 	}
 }

@@ -49,7 +49,7 @@ typedef enum {
 } servos;
 
 void servo_init(void);
-void insert_cube(uint8_t*);
+void insert_cube(void);
 void remove_cube(void);
 void centre_0(servos);
 void clockwise_90(servos);

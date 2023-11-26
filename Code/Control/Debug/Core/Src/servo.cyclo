@@ -1,6 +1,6 @@
 ../Core/Src/servo.c:12:6:servo_init	3
 ../Core/Src/servo.c:22:6:insert_cube	7
-../Core/Src/servo.c:43:6:remove_cube	1
+../Core/Src/servo.c:42:6:remove_cube	1
 ../Core/Src/servo.c:49:6:centre_0	6
 ../Core/Src/servo.c:69:6:clockwise_90	6
 ../Core/Src/servo.c:89:6:anticlockwise_90	6

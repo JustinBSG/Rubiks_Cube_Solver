@@ -129,7 +129,6 @@ int main(void)
 	Error_correction(SquareOfOneFace);*/
 //	char AllFaces[54];
 //	CameraWithErrorCorrection(AllFaces);
-  uint8_t flag = 0;
   while (1)
   {
 
@@ -146,9 +145,11 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  if (flag == 0)
-		  test_communication_two_boards();
-	  flag = 1;
+	  char input[6];
+	  HAL_UART_Receive(&huart2, input, sizeof(input), 0xFFFF);
+	  HAL_UART_Transmit(&huart1, input, sizeof(input), 0xFFFF);
+	  mode(input[5]-'1'+1);
+
   }
   /*LCD_Clear ( 90,  230,  60, 60, BLUE	);
   while(1) {

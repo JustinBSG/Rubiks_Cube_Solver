@@ -1,5 +1,6 @@
 ../Core/Src/process.c:17:5:splitCharArray	3
 ../Core/Src/process.c:43:6:ReadInput	1
-../Core/Src/process.c:52:6:makeOneMovement	91
-../Core/Src/process.c:268:6:SolveTheCube	2
-../Core/Src/process.c:283:6:mode	2
+../Core/Src/process.c:53:6:makeOneMovement	91
+../Core/Src/process.c:269:6:SolveTheCube	2
+../Core/Src/process.c:274:6:ScanCube	8
+../Core/Src/process.c:339:6:mode	5

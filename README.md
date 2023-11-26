@@ -22,10 +22,10 @@
 1. Turning on two boards and executing [terminal.py](Code/PC/terminal.py).
 1. Typing `mode1` on the terminal of your PC.
 2. Two arms will be pulled and create some spaces and allow you to put the shuffled Rubik's Cube inside.
-2. It starts scanning each face of the Rubik's Cube.
-3. After finishing scanning each face, it stops and waits. It shows the result of the scanning. If the result is correct, go to step 6. Otherwise, go to step 7.
+2. After typing `ok`, it starts scanning each face of the Rubik's Cube.
+3. After finishing scanning each face, it stops and waits. It shows the result of the scanning on monitor on Camera Board. If the result is correct, go to step 6. Otherwise, go to step 7.
 4. Typing `confirm` on terminal.
-5. Typing `<number> <short form of correct colour>` on termianl of CoolTerm.
+5. Typing `<number> <short form of correct colour>` on termianl.
     - \<numbers\> represents the panel of incorrect colour.
         - We use keypad keyboard as the format of the panel of each face
     - \<short form of correct colour\>
@@ -38,7 +38,7 @@
 6. After checking all faces of Rubik's Cube, you should see `Complate Scanning` on the terminal of your PC.
 7. Your PC starts performing calculation and sending the solution result to Control board for performing solving.
 8. After completing solving, it stops and allows you to get back your Rubik's Cube.
-9. Pressing Button 1 on Control Board for restarting the program again.
+9. Typing `ok` for restarting the program again.
 
 ## Steps of Mode 2 (Shuffling Mode)
 1. Turning on two boards and executing [terminal.py](Code/PC/terminal.py).
@@ -50,6 +50,7 @@
     - Hard: you can solve it in xx steps.
 3. It starts scrambling the Rubik's Cube and you can wait until it stops.
 4. After completing scrambling, it stops and allows you to get back your Rubik's Cube.
+9. Typing `ok` for restarting the program again.
 
 ## Authors
 - Lau Chun Ting, Justin @JustinBSG

@@ -46,3 +46,15 @@
 ../Core/Src/movement.c:897:6:movement_ab	1
 ../Core/Src/movement.c:903:6:movement_d	1
 ../Core/Src/movement.c:909:6:movement_ad	1
+../Core/Src/movement.c:914:6:movement_scan_up	1
+../Core/Src/movement.c:932:6:movement_scan_up_r	1
+../Core/Src/movement.c:950:6:movement_scan_north	1
+../Core/Src/movement.c:960:6:movement_scan_north_r	1
+../Core/Src/movement.c:970:6:movement_scan_east	1
+../Core/Src/movement.c:980:6:movement_scan_east_r	1
+../Core/Src/movement.c:990:6:movement_scan_south	1
+../Core/Src/movement.c:1000:6:movement_scan_south_r	1
+../Core/Src/movement.c:1010:6:movement_scan_west	1
+../Core/Src/movement.c:1020:6:movement_scan_west_r	1
+../Core/Src/movement.c:1030:6:movement_scan_down	1
+../Core/Src/movement.c:1036:6:movement_scan_down_r	1
