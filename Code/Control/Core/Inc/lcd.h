@@ -51,6 +51,7 @@
 #define      CMD_Set_PAGE		   0x2B	     
 #define      CMD_SetPixel		   0x2C	     
 
+void display_servo_info(uint32_t*);
 void            LCD_INIT		( void );
 void            LCD_Rst			( void );
 void            LCD_BackLed_Control	( FunctionalState enumState );

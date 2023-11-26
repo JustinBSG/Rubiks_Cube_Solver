@@ -1,11 +1,10 @@
 #include "lcd.h"
 #include "ascii.h"	
+#include <stdio.h>
 
 void		LCD_REG_Config          ( void );
 void		LCD_FillColor           ( uint32_t ulAmout_Point, uint16_t usColor );
 uint16_t	LCD_Read_PixelData      ( void );
-
-
 
 void Delay ( __IO uint32_t nCount ){  for ( ; nCount != 0; nCount -- );}
 
@@ -572,3 +571,32 @@ void LCD_DrawMyName(void) {
 	}
 }
 
+void display_servo_info(uint32_t *last_tick) {
+	if (HAL_GetTick() - (*last_tick) > 500) {
+		char servo_north_front[10];
+		char servo_north_back[10];
+		char servo_east_front[10];
+		char servo_east_back[10];
+		char servo_south_front[10];
+		char servo_south_back[10];
+		char servo_west_front[10];
+		char servo_west_back[10];
+		sprintf(servo_north_front, "N_F: %d", TIM3->CCR1);
+		sprintf(servo_north_back, "N_B: %d", TIM4->CCR1);
+		sprintf(servo_east_front, "E_F: %d", TIM3->CCR2);
+		sprintf(servo_east_back, "E_B: %d", TIM2->CCR3);
+		sprintf(servo_south_front, "S_F: %d", TIM3->CCR3);
+		sprintf(servo_south_back, "S_B: %d", TIM4->CCR3);
+		sprintf(servo_west_front, "W_F: %d", TIM3->CCR4);
+		sprintf(servo_west_back, "W_B: %d", TIM4->CCR4);
+		LCD_DrawString(0, HEIGHT_EN_CHAR*0, servo_north_front);
+		LCD_DrawString(0, HEIGHT_EN_CHAR*1, servo_north_back);
+		LCD_DrawString(0, HEIGHT_EN_CHAR*2, servo_east_front);
+		LCD_DrawString(0, HEIGHT_EN_CHAR*3, servo_east_back);
+		LCD_DrawString(0, HEIGHT_EN_CHAR*4, servo_south_front);
+		LCD_DrawString(0, HEIGHT_EN_CHAR*5, servo_south_back);
+		LCD_DrawString(0, HEIGHT_EN_CHAR*6, servo_west_front);
+		LCD_DrawString(0, HEIGHT_EN_CHAR*7, servo_west_back);
+		(*last_tick) = HAL_GetTick();
+	}
+}

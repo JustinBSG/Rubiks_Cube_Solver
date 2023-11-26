@@ -9,16 +9,11 @@
 
 GPIO_PinState HAL_GPIO_ReadPin(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin);
 
-void servo_init(void) {
-	for (uint8_t i = 1; i <= 4; i++)
+void servos_init(void) {
+	for (uint8_t i = 1; i <= 4; i++) {
 		servo_pull(i*2);
-	HAL_Delay(DELAY_TIME_P);
-	for (uint8_t i = 1; i <= 4; i++)
 		centre_0(i*2-1);
-	HAL_Delay(DELAY_TIME_90);
-	for (uint8_t i = 1; i <= 4; i++)
-		servo_push(i*2);
-	HAL_Delay(DELAY_TIME_P);
+	}
 }
 
 void insert_cube(uint8_t *start) {
@@ -27,19 +22,25 @@ void insert_cube(uint8_t *start) {
 			servo_pull(i*2);
 		HAL_Delay(DELAY_TIME_P);
 		for (uint8_t i = 1; i <= 4; i++)
-				centre_0(i*2-1);
+			centre_0(i*2-1);
 		HAL_Delay(DELAY_TIME_90);
-		for (uint8_t i = 3; i <= 4; i++)
-				servo_push(i*2);
+		servo_push(north_back);
+		servo_push(west_back);
 		HAL_Delay(DELAY_TIME_P);
-		*start++;
+		(*start)++;
 	} else if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == SET && *start == 1) {
 		for (uint8_t i = 1; i <= 4; i++)
 			servo_push(i*2);
 		HAL_Delay(DELAY_TIME_P);
-		*start++;
+		(*start)++;
 	}
 
+}
+
+void remove_cube(void) {
+	servo_pull(south_back);
+	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_P);
 }
 
 void centre_0(servos servo) {

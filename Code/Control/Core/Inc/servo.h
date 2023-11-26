@@ -14,6 +14,7 @@
 #define DELAY_TIME_90 	500
 #define DELAY_TIME_180 	900
 #define DELAY_TIME_P	500
+#define DELAY_TIME_sP	175
 
 #define CENTRE_DEGREE_1 	95
 #define LEFT_90_1 			37
@@ -28,13 +29,13 @@
 #define LEFT_90_4 			36
 #define RIGHT_90_4 			153
 #define PULL_DEGREE_1		30	// north
-#define PUSH_DEGREE_1 		100
+#define PUSH_DEGREE_1 		105
 #define PULL_DEGREE_2		30	// east
 #define PUSH_DEGREE_2 		90
 #define PULL_DEGREE_3		30	// south
 #define PUSH_DEGREE_3 		100
-#define PULL_DEGREE_4		25	// west
-#define PUSH_DEGREE_4 		90
+#define PULL_DEGREE_4		30	// west
+#define PUSH_DEGREE_4 		95
 
 typedef enum {
 	north_front = 1,
@@ -47,8 +48,9 @@ typedef enum {
 	west_back
 } servos;
 
-void servo_init(void);
+void servos_init(void);
 void insert_cube(uint8_t*);
+void remove_cube(void);
 void centre_0(servos);
 void clockwise_90(servos);
 void anticlockwise_90(servos);

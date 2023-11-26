@@ -106,6 +106,7 @@ void movement_aB(void) {
 // Number of Delay: 13
 void movement_U(void) {
 	servo_pull(east_back);
+//	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	clockwise_90(south_front);
@@ -115,6 +116,7 @@ void movement_U(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
+//	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(north_front);
@@ -126,6 +128,7 @@ void movement_U(void) {
 	clockwise_90(east_front);
 	HAL_Delay(DELAY_TIME_90);
 	servo_pull(east_back);
+//	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	anticlockwise_90(south_front);
@@ -136,6 +139,7 @@ void movement_U(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
+//	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(south_front);
@@ -149,6 +153,7 @@ void movement_U(void) {
 // Number of Delay: 13
 void movement_aU(void) {
 	servo_pull(east_back);
+//	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	clockwise_90(south_front);
@@ -158,6 +163,7 @@ void movement_aU(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
+//	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(north_front);
@@ -169,6 +175,7 @@ void movement_aU(void) {
 	anticlockwise_90(east_front);
 	HAL_Delay(DELAY_TIME_90);
 	servo_pull(east_back);
+//	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	anticlockwise_90(south_front);
@@ -179,6 +186,7 @@ void movement_aU(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
+//	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(south_front);
@@ -192,6 +200,7 @@ void movement_aU(void) {
 // Number of Delay: 13
 void movement_D(void) {
 	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	clockwise_90(south_front);
@@ -201,6 +210,7 @@ void movement_D(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(north_front);
@@ -212,6 +222,7 @@ void movement_D(void) {
 	clockwise_90(west_front);
 	HAL_Delay(DELAY_TIME_90);
 	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	anticlockwise_90(south_front);
@@ -222,6 +233,7 @@ void movement_D(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(south_front);
@@ -235,6 +247,7 @@ void movement_D(void) {
 // Number of Delay: 13
 void movement_aD(void) {
 	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	clockwise_90(south_front);
@@ -244,6 +257,7 @@ void movement_aD(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(north_front);
@@ -255,6 +269,7 @@ void movement_aD(void) {
 	anticlockwise_90(west_front);
 	HAL_Delay(DELAY_TIME_90);
 	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	anticlockwise_90(south_front);
@@ -265,6 +280,7 @@ void movement_aD(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(south_front);
@@ -422,6 +438,7 @@ void movement_aB2(void) {
 // Number of Delay: 17
 void movement_U2(void) {
 	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	clockwise_90(south_front);
@@ -431,6 +448,7 @@ void movement_U2(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(north_front);
@@ -448,6 +466,7 @@ void movement_U2(void) {
 	clockwise_90(east_front);
 	HAL_Delay(DELAY_TIME_180);
 	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	anticlockwise_90(south_front);
@@ -458,6 +477,7 @@ void movement_U2(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(south_front);
@@ -471,6 +491,7 @@ void movement_U2(void) {
 // Number of Delay: 17
 void movement_aU2(void) {
 	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	clockwise_90(south_front);
@@ -480,6 +501,7 @@ void movement_aU2(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(north_front);
@@ -497,6 +519,7 @@ void movement_aU2(void) {
 	anticlockwise_90(east_front);
 	HAL_Delay(DELAY_TIME_180);
 	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	anticlockwise_90(south_front);
@@ -507,6 +530,7 @@ void movement_aU2(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(south_front);
@@ -520,6 +544,7 @@ void movement_aU2(void) {
 // Number of Delay: 17
 void movement_D2(void) {
 	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	clockwise_90(south_front);
@@ -529,6 +554,7 @@ void movement_D2(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(north_front);
@@ -546,6 +572,7 @@ void movement_D2(void) {
 	clockwise_90(west_front);
 	HAL_Delay(DELAY_TIME_180);
 	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	anticlockwise_90(south_front);
@@ -556,6 +583,7 @@ void movement_D2(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(south_front);
@@ -569,6 +597,7 @@ void movement_D2(void) {
 // Number of Delay: 17
 void movement_aD2(void) {
 	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	clockwise_90(south_front);
@@ -578,6 +607,7 @@ void movement_aD2(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(north_front);
@@ -595,6 +625,7 @@ void movement_aD2(void) {
 	anticlockwise_90(west_front);
 	HAL_Delay(DELAY_TIME_180);
 	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	anticlockwise_90(south_front);
@@ -605,6 +636,7 @@ void movement_aD2(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(south_front);
@@ -618,6 +650,7 @@ void movement_aD2(void) {
 // Number of Delay: 6
 void movement_X(void) {
 	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	clockwise_90(east_front);
@@ -627,6 +660,7 @@ void movement_X(void) {
 	servo_push(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(west_front);
@@ -640,6 +674,7 @@ void movement_X(void) {
 // Number of Delay: 6
 void movement_aX(void) {
 	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	clockwise_90(west_front);
@@ -649,6 +684,7 @@ void movement_aX(void) {
 	servo_push(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(east_front);
@@ -676,6 +712,7 @@ void movement_aY(void) {
 // Number of Delay: 6
 void movement_Z(void) {
 	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	clockwise_90(south_front);
@@ -685,6 +722,7 @@ void movement_Z(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(south_front);
@@ -698,6 +736,7 @@ void movement_Z(void) {
 // Number of Delay: 6
 void movement_aZ(void) {
 	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	anticlockwise_90(south_front);
@@ -707,6 +746,7 @@ void movement_aZ(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(south_front);
@@ -723,6 +763,7 @@ void movement_M(void) {
 	anticlockwise_90(west_front);
 	HAL_Delay(DELAY_TIME_90);
 	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(east_front);
@@ -739,6 +780,7 @@ void movement_aM(void) {
 	clockwise_90(west_front);
 	HAL_Delay(DELAY_TIME_90);
 	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(east_front);
@@ -769,6 +811,7 @@ void movement_S(void) {
 	anticlockwise_90(south_front);
 	HAL_Delay(DELAY_TIME_90);
 	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(north_front);
@@ -785,6 +828,7 @@ void movement_aS(void) {
 	clockwise_90(south_front);
 	HAL_Delay(DELAY_TIME_90);
 	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(north_front);
@@ -846,13 +890,13 @@ void movement_ar(void) {
 // Number of Delay: 10
 void movement_b(void) {
 	movement_F();
-	movement_aX();
+	movement_aZ();
 }
 
 // Number of Delay: 10
 void movement_ab(void) {
 	movement_aF();
-	movement_X();
+	movement_Z();
 }
 
 // Number of Delay: 31
