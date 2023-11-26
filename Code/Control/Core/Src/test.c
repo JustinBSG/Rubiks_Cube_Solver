@@ -190,3 +190,11 @@ void test_communication_two_boards(void) {
 	LCD_DrawString(0, HEIGHT_EN_CHAR*2, "Transmit Success!!!");
 
 }
+
+void test_commands(void) {
+	static char listOfCommand[100][SIZE_OF_ONE_MOVEMENT];
+	char input[] = "F F' F2 F2'#";
+	int size;
+	ReadInput(input, &size, listOfCommand);
+	SolveTheCube(listOfCommand, size);
+}

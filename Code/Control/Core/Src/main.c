@@ -30,6 +30,7 @@
 #include "servo.h"
 #include "movement.h"
 #include "test.h"
+#include "process.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -109,20 +110,22 @@ int main(void)
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
 
   LCD_INIT();
-
+  servo_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  if (flag == 0)
-		  test_communication_two_boards();
-	  flag = 1;
+	  insert_cube(&start);
+	  if (start == 2) {
+		  test_commands();
+		  start = 3;
+	  }
+
   }
   /* USER CODE END 3 */
 }

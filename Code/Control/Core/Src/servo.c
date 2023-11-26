@@ -9,11 +9,14 @@
 
 GPIO_PinState HAL_GPIO_ReadPin(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin);
 
-void servos_init(void) {
+void servo_init(void) {
 	for (uint8_t i = 1; i <= 4; i++) {
 		servo_pull(i*2);
 		centre_0(i*2-1);
 	}
+	HAL_Delay(DELAY_TIME_P);
+	for (uint8_t i = 1; i <= 4; i++)
+		servo_push(i*2);
 }
 
 void insert_cube(uint8_t *start) {
@@ -27,12 +30,12 @@ void insert_cube(uint8_t *start) {
 		servo_push(north_back);
 		servo_push(west_back);
 		HAL_Delay(DELAY_TIME_P);
-		(*start)++;
+		(*start) = 1;
 	} else if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == SET && *start == 1) {
 		for (uint8_t i = 1; i <= 4; i++)
 			servo_push(i*2);
 		HAL_Delay(DELAY_TIME_P);
-		(*start)++;
+		(*start) = 2;
 	}
 
 }

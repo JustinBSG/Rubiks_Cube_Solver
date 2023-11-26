@@ -29,6 +29,7 @@
 #include "lcd.h"
 #include "CameraWithErrorCorrection.h"
 #include "test.h"
+#include "process.h"
 // #include "bsp_ov7725.h"
 // #include "bsp_sccb.h"
 // #include "xpt2046.h"

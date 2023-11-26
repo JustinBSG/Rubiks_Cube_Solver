@@ -31,9 +31,9 @@
 #define PULL_DEGREE_1		30	// north
 #define PUSH_DEGREE_1 		105
 #define PULL_DEGREE_2		30	// east
-#define PUSH_DEGREE_2 		90
+#define PUSH_DEGREE_2 		110
 #define PULL_DEGREE_3		30	// south
-#define PUSH_DEGREE_3 		100
+#define PUSH_DEGREE_3 		105
 #define PULL_DEGREE_4		30	// west
 #define PUSH_DEGREE_4 		95
 
@@ -48,7 +48,7 @@ typedef enum {
 	west_back
 } servos;
 
-void servos_init(void);
+void servo_init(void);
 void insert_cube(uint8_t*);
 void remove_cube(void);
 void centre_0(servos);
