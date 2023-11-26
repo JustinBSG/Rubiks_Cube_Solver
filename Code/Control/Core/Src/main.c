@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "tim.h"
+#include "usart.h"
 #include "gpio.h"
 #include "fsmc.h"
 
@@ -28,6 +29,7 @@
 #include "lcd.h"
 #include "servo.h"
 #include "movement.h"
+#include "test.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -42,7 +44,8 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+uint8_t flag = 0, start = 0;
+uint32_t last_tick = 0;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -94,6 +97,7 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM4_Init();
   MX_TIM2_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
@@ -105,8 +109,7 @@ int main(void)
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
 
   LCD_INIT();
-  uint8_t flag = 4, start = 0;
-  uint32_t last_tick = 0;
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -117,175 +120,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  char string[20];
-	  sprintf(string, "It is now flag %d.", flag);
-	  LCD_DrawString(0, HEIGHT_EN_CHAR*8, string);
-	  display_servo_info(&last_tick);
-	  if (start <= 1)
-		  insert_cube(&start);
-	  else {
-		  if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == SET) {
-			  switch (flag) {
-			  	  case 0:
-			  		  movement_F();
-			  		  movement_aF();
-			  		  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-			  		  break;
-			  	  case 1:
-			  		  movement_R();
-					  movement_aR();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 2:
-			  		  movement_L();
-					  movement_aL();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 3:
-			  		  movement_B();
-					  movement_aB();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 4:
-			  		  movement_U();
-					  movement_aU();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 5:
-			  		  movement_D();
-					  movement_aD();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 6:
-			  		  movement_X();
-					  movement_aX();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 7:
-			  		  movement_Y();
-					  movement_aY();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 8:
-			  		  movement_Z();
-					  movement_aZ();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 9:
-			  		  movement_M();
-					  movement_aM();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 10:
-			  		  movement_E();
-					  movement_aE();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 11:
-			  		  movement_S();
-					  movement_aS();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 12:
-			  		  movement_u();
-					  movement_au();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 13:
-			  		  movement_l();
-					  movement_al();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 14:
-			  		  movement_f();
-					  movement_af();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 15:
-			  		  movement_r();
-					  movement_ar();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 16:
-			  		  movement_b();
-					  movement_ab();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 17:
-			  		  movement_d();
-					  movement_ad();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 18:
-			  		  movement_F2();
-					  movement_aF2();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 19:
-			  		  movement_R2();
-					  movement_aR2();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 20:
-			  		  movement_L2();
-					  movement_aL2();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 21:
-			  		  movement_B2();
-					  movement_aB2();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 22:
-			  		  movement_U2();
-					  movement_aU2();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 23:
-			  		  movement_D2();
-					  movement_aD2();
-					  remove_cube();
-					  flag++;
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-					  break;
-			  	  case 100:
-			  		  servo_pull(north_back);
-			  		  servo_pull(south_back);
-			  		  HAL_Delay(DELAY_TIME_P);
-			  		  clockwise_90(west_front);
-			  		  anticlockwise_90(east_front);
-			  		  HAL_Delay(DELAY_TIME_90);
-			  		  LCD_Clear (0, 0, 240, 320, BACKGROUND);
-			  		  flag++;
-			  		  break;
-			  	  default:
-			  		  return 0;
-			  }
-		  }
-	  }
+	  if (flag == 0)
+		  test_communication_two_boards();
+	  flag = 1;
   }
   /* USER CODE END 3 */
 }

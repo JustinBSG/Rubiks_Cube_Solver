@@ -20,6 +20,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "usart.h"
 #include "gpio.h"
 #include "fsmc.h"
 
@@ -27,6 +28,7 @@
 /* USER CODE BEGIN Includes */
 #include "lcd.h"
 #include "CameraWithErrorCorrection.h"
+#include "test.h"
 // #include "bsp_ov7725.h"
 // #include "bsp_sccb.h"
 // #include "xpt2046.h"
@@ -94,6 +96,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_FSMC_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   LCD_INIT();
 	
@@ -104,7 +107,7 @@ int main(void)
 	LCD_Clear (50, 80, 140, 70, WHITE);
 	*/
 
-	LCD_Clear ( 0, 0, 240, 320, GREY );
+//	LCD_Clear ( 0, 0, 240, 320, GREY );
 
   /* USER CODE END 2 */
 
@@ -123,9 +126,9 @@ int main(void)
 			Ov7725_vsync = 0;
 		}
 	Error_correction(SquareOfOneFace);*/
-	char AllFaces[54];
-	CameraWithErrorCorrection(AllFaces);
-
+//	char AllFaces[54];
+//	CameraWithErrorCorrection(AllFaces);
+  uint8_t flag = 0;
   while (1)
   {
 
@@ -142,6 +145,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  if (flag == 0)
+		  test_communication_two_boards();
+	  flag = 1;
   }
   /*LCD_Clear ( 90,  230,  60, 60, BLUE	);
   while(1) {
