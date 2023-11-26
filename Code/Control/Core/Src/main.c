@@ -110,7 +110,6 @@ int main(void)
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
 
   LCD_INIT();
-  servo_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -120,12 +119,12 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  insert_cube(&start);
-	  if (start == 2) {
-		  test_commands();
-		  start = 3;
-	  }
-
+	  servo_init();
+	  uint8_t choice = 0;
+	  char input[6];
+	  HAL_UART_Receive(&huart1, input, sizeof(input), 0xFFFF);
+	  choice = input[5]-'1'+1;
+	  mode(choice);
   }
   /* USER CODE END 3 */
 }

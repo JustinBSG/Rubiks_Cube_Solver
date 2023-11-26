@@ -59,5 +59,17 @@ void movement_b(void);
 void movement_ab(void);
 void movement_d(void);
 void movement_ad(void);
+void movement_scan_up(void);
+void movement_scan_up_r(void);
+void movement_scan_north(void);
+void movement_scan_north_r(void);
+void movement_scan_east(void);
+void movement_scan_east_r(void);
+void movement_scan_south(void);
+void movement_scan_south_r(void);
+void movement_scan_west(void);
+void movement_scan_west_r(void);
+void movement_scan_down(void);
+void movement_scan_down_r(void);
 
 #endif /* INC_MOVEMENT_H_ */

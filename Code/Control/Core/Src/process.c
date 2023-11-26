@@ -41,6 +41,7 @@ int splitCharArray(char src[], char target[][SIZE_OF_ONE_MOVEMENT]) {
  * @param listOfCommand[][SIZE_OF_ONE_MOVEMENT] string that store different movements into seperated rows
  */
 void ReadInput(char input[], int *size, char listOfCommand[][SIZE_OF_ONE_MOVEMENT]) {
+	HAL_UART_Receive(&huart1, input, sizeof(input), 0xFFFF);
     (*size) = splitCharArray(input, listOfCommand);
 }
 
@@ -271,7 +272,41 @@ void SolveTheCube(char listOfCommand[][SIZE_OF_ONE_MOVEMENT], int size) {
 }
 
 void ScanCube(void) {
-
+	for (uint8_t steps = 1; steps <= 6; steps++) {
+		char stage;
+		switch (steps) {
+			// up
+			case 1: {
+				HAL_UART_Receive(&huart1, &stage, 1, 0xFFFF);
+				break;
+			}
+			// north
+			case 2: {
+				HAL_UART_Receive(&huart1, &stage, 1, 0xFFFF);
+				break;
+			}
+			// east
+			case 3: {
+				HAL_UART_Receive(&huart1, &stage, 1, 0xFFFF);
+				break;
+			}
+			// south
+			case 4: {
+				HAL_UART_Receive(&huart1, &stage, 1, 0xFFFF);
+				break;
+			}
+			// west
+			case 5: {
+				HAL_UART_Receive(&huart1, &stage, 1, 0xFFFF);
+				break;
+			}
+			// down
+			case 6: {
+				HAL_UART_Receive(&huart1, &stage, 1, 0xFFFF);
+				break;
+			}
+		}
+	}
 }
 
 /*
@@ -284,9 +319,32 @@ void ScanCube(void) {
  */
 void mode(uint8_t choice) {
 	switch (choice) {
-		case 0:
-			break;
 		case 1:
+			char listOfCommand[100][SIZE_OF_ONE_MOVEMENT];
+			char receive[100];
+			char stage;
+			int size;
+			if (start == 0) {
+				stage = '1';
+				HAL_UART_Transmit(&huart1, &stage, 1, 0xFFFF);
+				insert_cube(&start);
+			} else if (start == 2) {
+				stage = '2';
+				HAL_UART_Transmit(&huart1, &stage, 1, 0xFFFF);
+				ScanCube();
+				stage = '3';
+				HAL_UART_Transmit(&huart1, &stage, 1, 0xFFFF);
+				ReadInput(receive, &size, listOfCommand);
+				SolveTheCube(listOfCommand, size);
+				remove_cube();
+				while (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == RESET);
+				stage = '4';
+				HAL_UART_Transmit(&huart1, &stage, 1, 0xFFFF);
+			}
 			break;
+		case 2:
+			break;
+		default:
+			continue;
 	}
 }

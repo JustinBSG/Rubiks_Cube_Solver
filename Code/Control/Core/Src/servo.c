@@ -37,10 +37,10 @@ void insert_cube(uint8_t *start) {
 		HAL_Delay(DELAY_TIME_P);
 		(*start) = 2;
 	}
-
 }
 
 void remove_cube(void) {
+	servo_pull(west_back);
 	servo_pull(south_back);
 	servo_pull(east_back);
 	HAL_Delay(DELAY_TIME_P);

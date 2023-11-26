@@ -38,6 +38,7 @@
 6. After checking all faces of Rubik's Cube, you should see `Complate Scanning` on the terminal of your PC.
 7. Your PC starts performing calculation and sending the solution result to Control board for performing solving.
 8. After completing solving, it stops and allows you to get back your Rubik's Cube.
+9. Pressing Button 1 on Control Board for restarting the program again.
 
 ## Steps of Mode 2 (Shuffling Mode)
 1. Turning on two boards and executing [terminal.py](Code/PC/terminal.py).
