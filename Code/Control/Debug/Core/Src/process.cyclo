@@ -3,4 +3,4 @@
 ../Core/Src/process.c:53:6:makeOneMovement	91
 ../Core/Src/process.c:269:6:SolveTheCube	2
 ../Core/Src/process.c:274:6:ScanCube	8
-../Core/Src/process.c:339:6:mode	5
+../Core/Src/process.c:339:6:mode	3

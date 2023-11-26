@@ -13,7 +13,7 @@ void test_servo_movement(void) {
 	LCD_DrawString(0, HEIGHT_EN_CHAR*8, string);
 	display_servo_info(&last_tick);
 	if (start <= 1)
-	  insert_cube(&start);
+	  insert_cube();
 	else {
 	  if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == SET) {
 		  switch (flag) {

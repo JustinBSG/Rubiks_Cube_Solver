@@ -9,14 +9,14 @@
 
 void mode(int choice) {
 	switch (choice) {
-		case 1:
+		case 1: {
 			while (1) {
 				char signal;
-				HAL_UART_Receive(&huart1, signal, 1, 0xFFFF);
+				HAL_UART_Receive(&huart1, &signal, 1, 0xFFFF);
 				switch (signal) {
 					case '1': {
 						char message_r[3], message_t = 'T';
-						HAL_UART_Receive(&huart2, &message_r, sizeof(message), 0xFFFF);
+						HAL_UART_Receive(&huart2, message_r, sizeof(message_r), 0xFFFF);
 						HAL_UART_Transmit(&huart1, &message_t, 1, 0xFFFF);
 						break;
 					}
@@ -36,13 +36,14 @@ void mode(int choice) {
 						break;
 					}
 					case '3': {
-						// receive solution from PC
-						// transmit solution to Control Board
+						char message_r[100];
+						HAL_UART_Receive(&huart2, message_r, sizeof(message_r), 0xFFFF);
+						HAL_UART_Transmit(&huart1, message_r, sizeof(message_r), 0xFFFF);
 						break;
 					}
 					case '4': {
 						char message_r[3], message_t = 'T';
-						HAL_UART_Receive(&huart2, &message_r, sizeof(message_r), 0xFFFF);
+						HAL_UART_Receive(&huart2, message_r, sizeof(message_r), 0xFFFF);
 						HAL_UART_Transmit(&huart1, &message_t, 1, 0xFFFF);
 						break;
 					}
@@ -51,7 +52,34 @@ void mode(int choice) {
 					break;
 			}
 			break;
+		}
 		case 2: {
+			while (1) {
+				char signal;
+				HAL_UART_Receive(&huart1, &signal, 1, 0xFFFF);
+				switch (signal) {
+					case '1': {
+						char message_r[3], message_t = 'T';
+						HAL_UART_Receive(&huart2, message_r, sizeof(message_r), 0xFFFF);
+						HAL_UART_Transmit(&huart1, &message_t, 1, 0xFFFF);
+						break;
+					}
+					case '2': {
+						char message_r[100];
+						HAL_UART_Receive(&huart2, message_r, sizeof(message_r), 0xFFFF);
+						HAL_UART_Transmit(&huart1, message_r, sizeof(message_r), 0xFFFF);
+						break;
+					}
+					case '3': {
+						char message_r[3], message_t = 'T';
+						HAL_UART_Receive(&huart2, message_r, sizeof(message_r), 0xFFFF);
+						HAL_UART_Transmit(&huart1, &message_t, 1, 0xFFFF);
+						break;
+					}
+				}
+				if (signal == '3')
+					break;
+			}
 			break;
 		}
 	}

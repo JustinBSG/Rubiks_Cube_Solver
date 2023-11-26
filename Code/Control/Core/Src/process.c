@@ -359,8 +359,24 @@ void mode(uint8_t choice) {
 			HAL_UART_Receive(&huart1, &signal, 1, 0xFFFF);
 			break;
 		}
-		case 2:
+		case 2: {
+			char listOfCommand[100][SIZE_OF_ONE_MOVEMENT];
+			char receive[100];
+			char stage, signal;
+			int size;
+			stage = '1';
+			HAL_UART_Transmit(&huart1, &stage, 1, 0xFFFF);
+			insert_cube();
+			stage = '2';
+			HAL_UART_Transmit(&huart1, &stage, 1, 0xFFFF);
+			ReadInput(receive, &size, listOfCommand);
+			SolveTheCube(listOfCommand, size);
+			remove_cube();
+			stage = '3';
+			HAL_UART_Transmit(&huart1, &stage, 1, 0xFFFF);
+			HAL_UART_Receive(&huart1, &signal, 1, 0xFFFF);
 			break;
+		}
 		default:
 	}
 }

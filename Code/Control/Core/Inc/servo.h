@@ -10,6 +10,7 @@
 
 #include "main.h"
 #include "tim.h"
+#include "usart.h"
 
 #define DELAY_TIME_90 	500
 #define DELAY_TIME_180 	900
@@ -36,6 +37,8 @@
 #define PUSH_DEGREE_3 		105
 #define PULL_DEGREE_4		30	// west
 #define PUSH_DEGREE_4 		95
+
+extern UART_HandleTypeDef huart1;
 
 typedef enum {
 	north_front = 1,
