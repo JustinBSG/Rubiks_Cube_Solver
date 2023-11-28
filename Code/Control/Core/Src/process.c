@@ -339,7 +339,7 @@ void ScanCube(void) {
 void mode(uint8_t choice) {
 	switch (choice) {
 		case 1: {
-			char listOfCommand[100][SIZE_OF_ONE_MOVEMENT];
+			static char listOfCommand[100][SIZE_OF_ONE_MOVEMENT];
 			char receive[100];
 			char stage, signal;
 			int size;

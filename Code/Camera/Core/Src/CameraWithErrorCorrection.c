@@ -149,6 +149,8 @@ int CameraWithErrorCorrection(char* AllFaces) {
 						{
 							FIFO_PREPARE;
 							ReadSquare(SquareOfOneFace);
+							// HAL_Delay(1000);
+							// LCD_DrawString(150, 250, SquareOfOneFace);
 							HAL_Delay(0xFFFF);
 //							return 0;
 //							 ImagDisp();

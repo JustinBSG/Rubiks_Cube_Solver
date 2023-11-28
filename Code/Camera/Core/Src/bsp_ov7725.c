@@ -330,21 +330,21 @@ void writeColorIntoArray(int* R, int* G, int* B, char* SquareOfOneFace) {
 //				}
 //			}
 //		}
-		if (B <= 10) {
-			if (R < 5){
+		if (B[num] <= 10) {
+			if (R[num] < 5){
 				SquareOfOneFace[num] = 'G';
 			} else {
-				if (G < 10) {
+				if (G[num] < 10) {
 					SquareOfOneFace[num] = 'R';
 				} else {
 					SquareOfOneFace[num] = 'O';
 				}
 			}
 		} else {
-			if (R < 5) {
+			if (R[num] < 5) {
 				SquareOfOneFace[num] = 'B';
 			} else {
-				if (B > 20) {
+				if (B[num] > 20) {
 					SquareOfOneFace[num] = 'W';
 				} else {
 					SquareOfOneFace[num] = 'Y';
