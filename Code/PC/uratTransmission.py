@@ -37,6 +37,24 @@ MOVEMENT = ['F', 'R', 'L', 'B', 'U', 'D'\
 COLOR = ['w', 'r', 'y', 'b', 'g', 'o']
 CUBE_STRING = ""
 
+def change(Ori):
+    CUBESTRING = []
+    for index in range(54):
+        match(Ori[index]):
+            case ('W'):
+                CUBESTRING.append('U')
+            case ('R'):
+                CUBESTRING.append('R')
+            case ('G'):
+                CUBESTRING.append('F')
+            case ('O'):
+                CUBESTRING.append('L')
+            case ('B'):
+                CUBESTRING.append('B')
+            case ('Y'):
+                CUBESTRING.append('D')
+    return CUBESTRING
+
 def Reshuffle(difficulty):  # I think it should be define as the cube is moved from the reset state by how many moves 
     # --> difficult to define difficulty
     list_of_command = ""
@@ -81,32 +99,53 @@ mode = -1
 while 1:
     mode = input("Please enter the mode: (eg. mode1) ")    # read mode
     if (mode == "mode1" or mode == "mode2"):
-        match (mode[5]):
-            case 1:
-                stage = 1
+        server.write(mode.encode())
+        match (mode[4]):
+            case "1":
                 while 1:
-                    if (stage == 1):
+                    # stage = "0"
+                    # print(1)
+                    stage = server.read().decode("Ascii")
+                    # if (stage != "0"):
+                    # print(stage)
+                    if (stage == "1"):
                         user_ok = input("Please enter ok when you are ready: ")
                         if (user_ok == "ok"):
                             server.write(user_ok.encode()) 
-                            stage = server.readline().decode("Ascii")
+                            # stage = server.read().decode("Ascii")
                         else:
                             print("Wrong input, please enter ok again when you are ready")
-                    elif (stage == 2):
+                    elif (stage == "2"):
+                        count = 0
                         while 1:
                             user_input = input("Please correct the cube if there is anything wrong in scanning: (eg. 4w)")
-                            if (user_input == "confirm" or (user_input[0] > 0 and user_input[0] < 10 and COLOR.count(user_input[1]) == 1) and len(user_input)):
+                            if (user_input == "confirm" or (len(user_input) == 2 and user_input[0] > "0" and user_input[0] <= "9" and COLOR.count(user_input[1]) == 1)):
                                 if (user_input == "confirm"):
-                                    break
+                                    count += 1
+                                    server.write(user_input.encode())        # --> need to deal with terminate in the board code also
+                                    if (count == 6):
+                                        # print("face = 6, break")
+                                        break
+                                else:
+                                    user_input = user_input.ljust(7, "#")
+                                    server.write(user_input.encode())
                             else:
                                 print("Wrong input. Please enter again if you see something wrong in the scanning data")
-                        server.write(user_input.encode())        # --> need to deal with terminate in the board code also
-                        CUBE_STRING = server.readline().decode()
-                    elif (stage == 3):
-                        solution = kociemba.solve(CUBE_STRING)
+                        temp = server.read(size=55).decode()
+                        # print(temp)
+                        CUBE_STRING = temp
+                    elif (stage == "3"):
+                        # print(CUBE_STRING)
+                        # if (len(CUBE_STRING) == 55):
+                        #     CUBE_STRING = CUBE_STRING[:-1]
+                        #     print(CUBE_STRING)
+                        CUBESTRING = ''.join(change(CUBE_STRING[:-1]))
+                        print(CUBESTRING)
+                        solution = kociemba.solve(CUBESTRING)
+                        print(solution)
                         solution = solution.ljust(BUFFER_SIZE, '#')
                         server.write(solution.encode())
-                    elif (stage == 4):
+                    elif (stage == "4"):
                         while 1:
                             user_fin = input("Please enter ok after you remove the cube:")
                             if (user_fin != "ok"):
@@ -114,14 +153,13 @@ while 1:
                             else:
                                 server.write("ok")
                                 break
-                        stage = -1
-                        break
-            case 2:
-                stage = -1
+                        stage = "0"
+            case "2":
+                stage = "1"
                 while 1:
-                    stage = server.readline().decode()
+                    stage = server.read().decode()
                     if (stage == 2):
-                        difficulty = server.readline().decode()      # needs error checking?
+                        difficulty = server.read().decode()      # needs error checking?
                         Reshuffle(difficulty)
                     elif (stage == 3):
                         stage = -1

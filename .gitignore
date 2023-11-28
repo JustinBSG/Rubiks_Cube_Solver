@@ -52,9 +52,8 @@ Mkfile.old
 dkms.conf
 
 .DS_Store
-*.docx
-*.pdf
-*.mp4
+/Material
+DiscussionWS.docx
 .vscode
 .vs
 cmake

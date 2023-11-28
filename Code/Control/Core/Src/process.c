@@ -285,7 +285,7 @@ void ScanCube(void) {
 				break;
 			}
 			// north
-			case 2: {
+			case 6: {
 				movement_scan_north();
 				HAL_UART_Transmit(&huart1, &signal_t, 1, 0xFFFF);
 				HAL_UART_Receive(&huart1, &signal_r, 1, 0xFFFF);
@@ -293,7 +293,7 @@ void ScanCube(void) {
 				break;
 			}
 			// east
-			case 3: {
+			case 2: {
 				movement_scan_east();
 				HAL_UART_Transmit(&huart1, &signal_t, 1, 0xFFFF);
 				HAL_UART_Receive(&huart1, &signal_r, 1, 0xFFFF);
@@ -301,7 +301,7 @@ void ScanCube(void) {
 				break;
 			}
 			// south
-			case 4: {
+			case 3: {
 				movement_scan_south();
 				HAL_UART_Transmit(&huart1, &signal_t, 1, 0xFFFF);
 				HAL_UART_Receive(&huart1, &signal_r, 1, 0xFFFF);
@@ -317,7 +317,7 @@ void ScanCube(void) {
 				break;
 			}
 			// down
-			case 6: {
+			case 4: {
 				movement_scan_down();
 				HAL_UART_Transmit(&huart1, &signal_t, 1, 0xFFFF);
 				HAL_UART_Receive(&huart1, &signal_r, 1, 0xFFFF);
