@@ -3,6 +3,7 @@
 #include "lcd.h"
 #include "stdlib.h"
 #include "stdio.h"
+#include "math.h"
 
 typedef struct Reg
 {
@@ -174,40 +175,31 @@ void initArray(int* Array, int size) {
 }
 
 int detect(uint16_t i, uint16_t j) {
-	if (((i - (CENTRE_Y-SQUARE_SIZE) >= -SAMPLE_SIZE/2) && (i - (CENTRE_Y-SQUARE_SIZE) <= SAMPLE_SIZE/2)) &&
-		((j - (CENTRE_X-SQUARE_SIZE) >= -SAMPLE_SIZE/2) && (j - (CENTRE_X-SQUARE_SIZE) <= SAMPLE_SIZE/2))) {
+	if ((abs(FACE_ONE_X - i)<=SAMPLE_SIZE/2) && (abs(FACE_ONE_Y - j)<=SAMPLE_SIZE/2)) {
 		return 0;
 	}
-	if (((i - (CENTRE_Y-SQUARE_SIZE) >= -SAMPLE_SIZE/2) && (i - (CENTRE_Y-SQUARE_SIZE) <= SAMPLE_SIZE/2)) &&
-		((j - CENTRE_X >= -SAMPLE_SIZE/2) && (j - CENTRE_X <= SAMPLE_SIZE/2))) {
+	if ((abs(FACE_TWO_X - i)<=SAMPLE_SIZE/2) && (abs(FACE_TWO_Y - j)<=SAMPLE_SIZE/2)) {
 		return 1;
 	}
-	if (((i - (CENTRE_Y-SQUARE_SIZE) >= -SAMPLE_SIZE/2) && (i - (CENTRE_Y-SQUARE_SIZE) <= SAMPLE_SIZE/2)) &&
-		((j - (CENTRE_X+SQUARE_SIZE) >= -SAMPLE_SIZE/2) && (j - (CENTRE_X+SQUARE_SIZE) <= SAMPLE_SIZE/2))) {
+	if ((abs(FACE_THREE_X - i)<=SAMPLE_SIZE/2) && (abs(FACE_THREE_Y - j)<=SAMPLE_SIZE/2)) {
 		return 2;
 	}
-	if (((i - CENTRE_Y >= -SAMPLE_SIZE/2) && (i - CENTRE_Y <= SAMPLE_SIZE/2)) &&
-		((j - (CENTRE_X-SQUARE_SIZE) >= -SAMPLE_SIZE/2) && (j - (CENTRE_X-SQUARE_SIZE) <= SAMPLE_SIZE/2))) {
+	if ((abs(FACE_FOUR_X - i)<=SAMPLE_SIZE/2) && (abs(FACE_FOUR_Y - j)<=SAMPLE_SIZE/2)) {
 		return 3;
 	}
-	if (((i - CENTRE_Y >= -SAMPLE_SIZE/2) && (i - CENTRE_Y <= SAMPLE_SIZE/2)) &&
-		((j - CENTRE_X >= -SAMPLE_SIZE/2) && (j - CENTRE_X <= SAMPLE_SIZE/2))) {
+	if ((abs(FACE_FIVE_X - i)<=SAMPLE_SIZE/2) && (abs(FACE_FIVE_Y - j)<=SAMPLE_SIZE/2)) {
 		return 4;
 	}
-	if (((i - CENTRE_Y >= -SAMPLE_SIZE/2) && (i - CENTRE_Y <= SAMPLE_SIZE/2)) &&
-		((j - (CENTRE_X+SQUARE_SIZE) >= -SAMPLE_SIZE/2) && (j - (CENTRE_X+SQUARE_SIZE) <= SAMPLE_SIZE/2))) {
+	if ((abs(FACE_SIX_X - i)<=SAMPLE_SIZE/2) && (abs(FACE_SIX_Y - j)<=SAMPLE_SIZE/2)) {
 		return 5;
 	}
-	if (((i - (CENTRE_Y+SQUARE_SIZE) >= -SAMPLE_SIZE/2) && (i - (CENTRE_Y+SQUARE_SIZE) <= SAMPLE_SIZE/2)) &&
-		((j - (CENTRE_X-SQUARE_SIZE) >= -SAMPLE_SIZE/2) && (j - (CENTRE_X-SQUARE_SIZE) <= SAMPLE_SIZE/2))) {
+	if ((abs(FACE_SEVEN_X - i)<=SAMPLE_SIZE/2) && (abs(FACE_SEVEN_Y - j)<=SAMPLE_SIZE/2)) {
 		return 6;
 	}
-	if (((i - (CENTRE_Y+SQUARE_SIZE) >= -SAMPLE_SIZE/2) && (i - (CENTRE_Y+SQUARE_SIZE) <= SAMPLE_SIZE/2)) &&
-		((j - CENTRE_X >= -SAMPLE_SIZE/2) && (j - CENTRE_X <= SAMPLE_SIZE/2))) {
+	if ((abs(FACE_EIGHT_X - i)<=SAMPLE_SIZE/2) && (abs(FACE_EIGHT_Y - j)<=SAMPLE_SIZE/2)) {
 		return 7;
 	}
-	if (((i - (CENTRE_Y+SQUARE_SIZE) >= -SAMPLE_SIZE/2) && (i - (CENTRE_Y+SQUARE_SIZE) <= SAMPLE_SIZE/2)) &&
-		((j - (CENTRE_X+SQUARE_SIZE) >= -SAMPLE_SIZE/2) && (j - (CENTRE_X+SQUARE_SIZE) <= SAMPLE_SIZE/2))) {
+	if ((abs(FACE_NINE_X - i)<=SAMPLE_SIZE/2) && (abs(FACE_NINE_Y - j)<=SAMPLE_SIZE/2)) {
 		return 8;
 	}
 	return 9;

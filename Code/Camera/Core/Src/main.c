@@ -98,6 +98,7 @@ int main(void)
   MX_GPIO_Init();
   MX_FSMC_Init();
   MX_USART1_UART_Init();
+  MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
   LCD_INIT();
 	
@@ -127,8 +128,8 @@ int main(void)
 			Ov7725_vsync = 0;
 		}
 	Error_correction(SquareOfOneFace);*/
-//	char AllFaces[54];
-//	CameraWithErrorCorrection(AllFaces);
+	char AllFaces[54];
+	CameraWithErrorCorrection(AllFaces);
   while (1)
   {
 
@@ -146,7 +147,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  char input[6];
-	  HAL_UART_Receive(&huart2, input, sizeof(input), 0xFFFF);
+	  HAL_UART_Receive(&huart3, input, sizeof(input), 0xFFFF);
 	  HAL_UART_Transmit(&huart1, input, sizeof(input), 0xFFFF);
 	  mode(input[5]-'1'+1);
 

@@ -498,41 +498,6 @@ uint8_t XPT2046_Get_TouchedPoint ( strType_XPT2046_Coordinate * pDisplayCoordina
 	
 } 
 
-uint16_t convertColor2RGB(char Color) { // need change
-	if (Color == 'W') {
-		return WHITE;
-	}
-	if (Color == 'O') {
-		return ORANGE;
-	}
-	if (Color == 'G') {
-		return GREEN;
-	}
-	if (Color == 'Y') {
-		return YELLOW;
-	}
-	if (Color == 'B') {
-		return BLUE;
-	}
-	if (Color == 'R') {
-		return RED;
-	}
-	return CYAN; // a color to indicate wrong color
-}
-
-void printFace(char* SquareOfOneFace) {
-	LCD_Clear(10, 10, 220, 220, BLACK);
-	for (int row=0; row<3; ++row) {
-		for (int col=0; col<3; ++col) {
-			int num = row*3+col;
-			uint16_t RGB = convertColor2RGB(SquareOfOneFace[num]);
-			int x = (SQUARE_SIZE+10)*col+FIRST_ROW_COL;
-			int y = (SQUARE_SIZE+10)*row+FIRST_ROW_COL;
-			LCD_Clear(x, y, SQUARE_SIZE, SQUARE_SIZE, RGB);
-		}
-	}
-}
-
 int detectTP(strType_XPT2046_Coordinate strDisplayCoordinate) {
 	if (strDisplayCoordinate.y >= (FIRST_ROW_COL+10) && strDisplayCoordinate.y <= (SECOND_ROW_COL-10)) {
 		if (strDisplayCoordinate.x >= (FIRST_ROW_COL+10) && strDisplayCoordinate.x <= (SECOND_ROW_COL-10)) {
@@ -656,33 +621,7 @@ void Check_touchkey(char* SquareOfOneFace)
 	}
 }
 
-void Error_correction(char* SquareOfOneFace) {
-	printFace(SquareOfOneFace);
-	while (1) {
-		if (ucXPT2046_TouchFlag == 1) {
-			Check_touchkey(SquareOfOneFace);
-			ucXPT2046_TouchFlag = 0;
-		}
-		HAL_Delay(50);
-		if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == GPIO_PIN_SET) {
-			HAL_Delay(50);
-			if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == GPIO_PIN_RESET) {
-				printFace(SquareOfOneFace);
-				LCD_Clear(90, 240, 60, 60, WHITE);
-				LCD_DrawString(20, 240, "This face's colors are: ");
-				/*HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_SET);
-				HAL_Delay(100);
-				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);
-				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_SET);
-				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_RESET);
-				HAL_Delay(500);
-				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET);*/
-				break;
-			}
-		}
-	}
-	return;
-}
+
 
 
 
