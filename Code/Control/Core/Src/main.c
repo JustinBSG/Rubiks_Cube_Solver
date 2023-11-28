@@ -121,7 +121,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
 	  servo_init();
 	  uint8_t choice = 0;
-	  char input[6];
+	  char input[5];
 	  HAL_UART_Receive(&huart1, input, sizeof(input), 0xFFFF);
 	  choice = input[5]-'1'+1;
 	  mode(choice);
