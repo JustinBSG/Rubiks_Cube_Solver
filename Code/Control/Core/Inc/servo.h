@@ -15,7 +15,7 @@
 #define DELAY_TIME_90 	500
 #define DELAY_TIME_180 	900
 #define DELAY_TIME_P	500
-#define DELAY_TIME_sP	175
+#define DELAY_TIME_sP	200
 
 #define CENTRE_DEGREE_1 	95
 #define LEFT_90_1 			37
@@ -30,13 +30,13 @@
 #define LEFT_90_4 			36
 #define RIGHT_90_4 			153
 #define PULL_DEGREE_1		30	// north
-#define PUSH_DEGREE_1 		105
+#define PUSH_DEGREE_1 		100
 #define PULL_DEGREE_2		30	// east
-#define PUSH_DEGREE_2 		110
+#define PUSH_DEGREE_2 		100
 #define PULL_DEGREE_3		30	// south
-#define PUSH_DEGREE_3 		105
+#define PUSH_DEGREE_3 		100
 #define PULL_DEGREE_4		30	// west
-#define PUSH_DEGREE_4 		95
+#define PUSH_DEGREE_4 		100
 
 extern UART_HandleTypeDef huart1;
 

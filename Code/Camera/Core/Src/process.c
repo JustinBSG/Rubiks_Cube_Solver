@@ -54,27 +54,31 @@ void mode(int choice) {
 							while (1) {
 								// receive message from PC
 								char correctionMessage[7];
+								printFace(SquareOfOneFace);
 								HAL_UART_Receive(&huart3, correctionMessage, sizeof(correctionMessage), 0xFFFF);
 								if (stringCompare(correctionMessage, "confirm", 7) == 0) {	// correct then
 									writeDataIntoAllFaces(AllFaces, SquareOfOneFace,face);	// write one face data into all face data
 									HAL_UART_Transmit(&huart1, &message_t, 1, 0xFFFF);		// transmit signal to Control Board
 									face++;
+									break;
 								} else {	// wrong then
 									SquareOfOneFace[correctionMessage[0]-'1'] = (char) ((int) correctionMessage[1] - 32);// correct it and go back to receceive message from PC
-									printFace(SquareOfOneFace);
 								}
-								if (face == 6)
-									break;
 							}
-							HAL_UART_Transmit(&huart3, AllFaces, sizeof(AllFaces), 0xFFFF);		// transmit capture result to PC
 						}
+						HAL_UART_Transmit(&huart3, AllFaces, sizeof(AllFaces), 0xFFFF);		// transmit capture result to PC
 						break;
 					}
 					case '3': {
 						char message_r[100];
+						LCD_Clear( 0, 0, 240, 320, GREY );
+						LCD_DrawString(0,0,"123");
 						HAL_UART_Transmit(&huart3, &signal, 1, 0xFFFF);
+						LCD_DrawString(0,8,"123");
 						HAL_UART_Receive(&huart3, message_r, sizeof(message_r), 0xFFFF);
+						LCD_DrawString(0,16,"123");
 						HAL_UART_Transmit(&huart1, message_r, sizeof(message_r), 0xFFFF);
+						LCD_DrawString(0,32,"123");
 						break;
 					}
 					case '4': {

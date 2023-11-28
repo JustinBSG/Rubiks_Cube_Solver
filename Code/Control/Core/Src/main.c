@@ -45,7 +45,7 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-uint8_t flag = 0, start = 0;
+//uint8_t flag = 0, start = 0;
 uint32_t last_tick = 0;
 /* USER CODE END PM */
 
@@ -125,6 +125,7 @@ int main(void)
 	  HAL_UART_Receive(&huart1, input, sizeof(input), 0xFFFF);
 	  choice = input[4]-'1'+1;
 	  mode(choice);
+
   }
   /* USER CODE END 3 */
 }
