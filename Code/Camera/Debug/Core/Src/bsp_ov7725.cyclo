@@ -5,9 +5,9 @@
 ../Core/Src/bsp_ov7725.c:208:6:int2RGB	1
 ../Core/Src/bsp_ov7725.c:214:6:printRGB	1
 ../Core/Src/bsp_ov7725.c:226:6:printColor	6
-../Core/Src/bsp_ov7725.c:259:6:printColorRGB	3
-../Core/Src/bsp_ov7725.c:269:6:sumRGB	1
-../Core/Src/bsp_ov7725.c:277:6:averageRGB	1
-../Core/Src/bsp_ov7725.c:281:6:detect_sum	2
-../Core/Src/bsp_ov7725.c:288:6:writeColorIntoArray	7
-../Core/Src/bsp_ov7725.c:316:6:ReadSquare	4
+../Core/Src/bsp_ov7725.c:280:6:printColorRGB	3
+../Core/Src/bsp_ov7725.c:290:6:sumRGB	1
+../Core/Src/bsp_ov7725.c:298:6:averageRGB	1
+../Core/Src/bsp_ov7725.c:302:6:detect_sum	2
+../Core/Src/bsp_ov7725.c:309:6:writeColorIntoArray	7
+../Core/Src/bsp_ov7725.c:358:6:ReadSquare	4

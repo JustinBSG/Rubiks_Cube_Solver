@@ -128,8 +128,8 @@ int main(void)
 			Ov7725_vsync = 0;
 		}
 	Error_correction(SquareOfOneFace);*/
-	char AllFaces[54];
-	CameraWithErrorCorrection(AllFaces);
+//	char AllFaces[54];
+//	CameraWithErrorCorrection(AllFaces);
   while (1)
   {
 
