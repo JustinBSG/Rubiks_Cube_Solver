@@ -22,6 +22,7 @@
 #include "stm32f1xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "movement.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -197,6 +198,32 @@ void SysTick_Handler(void)
 /* For the available peripheral interrupt handler names,                      */
 /* please refer to the startup file (startup_stm32f1xx.s).                    */
 /******************************************************************************/
+
+/**
+  * @brief This function handles EXTI line0 interrupt.
+  */
+void EXTI0_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI0_IRQn 0 */
+	if (__HAL_GPIO_EXTI_GET_IT(GPIO_PIN_0) != RESET) {
+		centre_0(south_front);
+		centre_0(north_front);
+		centre_0(east_front);
+		centre_0(west_front);
+		servo_pull(south_back);
+		servo_pull(east_back);
+		servo_pull(north_back);
+		servo_pull(west_back);
+		HAL_Delay(0xFFFF);
+		__HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_0);
+		HAL_GPIO_EXTI_Callback(GPIO_PIN_0);
+	}
+  /* USER CODE END EXTI0_IRQn 0 */
+//  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
+  /* USER CODE BEGIN EXTI0_IRQn 1 */
+
+  /* USER CODE END EXTI0_IRQn 1 */
+}
 
 /* USER CODE BEGIN 1 */
 

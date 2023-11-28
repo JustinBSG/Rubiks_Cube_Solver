@@ -14,8 +14,6 @@
 #include "usart.h"
 #include "process.h"
 
-extern uint8_t flag, start;
-extern uint32_t last_tick;
 extern UART_HandleTypeDef huart1;
 
 void test_servo_movement(void);

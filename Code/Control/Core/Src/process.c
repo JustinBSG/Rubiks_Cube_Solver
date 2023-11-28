@@ -41,7 +41,9 @@ int splitCharArray(char src[], char target[][SIZE_OF_ONE_MOVEMENT]) {
  * @param listOfCommand[][SIZE_OF_ONE_MOVEMENT] string that store different movements into seperated rows
  */
 void ReadInput(char input[], int *size, char listOfCommand[][SIZE_OF_ONE_MOVEMENT]) {
-	HAL_UART_Receive(&huart1, input, sizeof(input), 0xFFFF);
+	LCD_DrawString(0,16, "Not yet");
+	HAL_UART_Receive(&huart1, input, 100, 0xFFFF);
+	LCD_DrawString(0,0, input);
     (*size) = splitCharArray(input, listOfCommand);
 }
 
@@ -53,24 +55,20 @@ void ReadInput(char input[], int *size, char listOfCommand[][SIZE_OF_ONE_MOVEMEN
 void makeOneMovement(char Movement[]) {
 	switch (Movement[0]) {
 		case 'F':
-			if (Movement[2] != '\0')
-				movement_aF2();
-			else if (Movement[1] == '\0' && Movement[2] == '\0')
-				movement_F();
-			else if (Movement[1] == '2')
+			if (Movement[1] == '2')
 				movement_F2();
-			else
+			else if (Movement[1] == '\'')
 				movement_aF();
+			else
+				movement_F();
 			break;
 		case 'R':
-			if (Movement[2] != '\0')
-				movement_aR2();
-			else if (Movement[1] == '\0' && Movement[2] == '\0')
-				movement_R();
-			else if (Movement[1] == '2')
+			if (Movement[1] == '2')
 				movement_R2();
-			else
+			else if (Movement[1] == '\'')
 				movement_aR();
+			else
+				movement_R();
 			break;
 		case 'L':
 			if (Movement[2] != '\0')
@@ -80,7 +78,7 @@ void makeOneMovement(char Movement[]) {
 			else if (Movement[1] == '2')
 				movement_L2();
 			else
-				movement_aL();
+				movement_L();
 			break;
 		case 'B':
 			if (Movement[2] != '\0')
@@ -90,7 +88,7 @@ void makeOneMovement(char Movement[]) {
 			else if (Movement[1] == '2')
 				movement_B2();
 			else
-				movement_aB();
+				movement_B();
 			break;
 		case 'U':
 			if (Movement[2] != '\0')
@@ -100,7 +98,7 @@ void makeOneMovement(char Movement[]) {
 			else if (Movement[1] == '2')
 				movement_U2();
 			else
-				movement_aU();
+				movement_U();
 			break;
 		case 'D':
 			if (Movement[2] != '\0')
@@ -110,7 +108,7 @@ void makeOneMovement(char Movement[]) {
 			else if (Movement[1] == '2')
 				movement_D2();
 			else
-				movement_aD();
+				movement_D();
 			break;
 		case 'X':
 			if (Movement[2] != '\0') {
