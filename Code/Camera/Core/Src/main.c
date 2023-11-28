@@ -149,7 +149,7 @@ int main(void)
 	  char input[5];
 	  HAL_UART_Receive(&huart3, input, sizeof(input), 0xFFFF);
 	  HAL_UART_Transmit(&huart1, input, sizeof(input), 0xFFFF);
-	  mode(input[5]-'1'+1);
+	  mode(input[4]-'1'+1);
 
   }
   /*LCD_Clear ( 90,  230,  60, 60, BLUE	);

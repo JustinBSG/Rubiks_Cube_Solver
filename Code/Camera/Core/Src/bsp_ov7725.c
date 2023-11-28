@@ -288,27 +288,27 @@ void detect_sum(uint16_t i, uint16_t j, uint16_t Camera_Data, int* R, int* G, in
 void writeColorIntoArray(int* R, int* G, int* B, char* SquareOfOneFace) {
 	// content the same with printColor()
 	for (int num=0; num<9; num++) {
-		if (B[num] > 15) {
-			if (G[num] < 33) {
-				SquareOfOneFace[num] = 'R';
+		if (G > 45) {
+				SquareOfOneFace[num] = 'Y';
 			} else {
-				if (R[num] < 15) {
-					SquareOfOneFace[num] = 'B';
+				if (R < 8) {
+					if (G > 30) {
+						SquareOfOneFace[num] = 'G';
+					} else {
+						SquareOfOneFace[num] = 'B';
+					}
 				} else {
-					SquareOfOneFace[num] = 'W';
+					if (B > 13) {
+						SquareOfOneFace[num] = 'W';
+					} else {
+						if (G < 24) {
+							SquareOfOneFace[num] = 'R';
+						} else {
+							SquareOfOneFace[num] = 'O';
+						}
+					}
 				}
 			}
-		} else {
-			if (G[num] < 40) {
-				SquareOfOneFace[num] = 'O';
-			} else {
-				if (R[num] < 20) {
-					SquareOfOneFace[num] = 'G';
-				} else {
-					SquareOfOneFace[num] = 'Y';
-				}
-			}
-		}
 	}
 }
 

@@ -1313,15 +1313,15 @@ int main(void)
 	  uint8_t choice = 0;
  800097e:	2300      	movs	r3, #0
  8000980:	71fb      	strb	r3, [r7, #7]
-	  char input[6];
+	  char input[5];
 	  HAL_UART_Receive(&huart1, input, sizeof(input), 0xFFFF);
  8000982:	4639      	mov	r1, r7
  8000984:	f64f 73ff 	movw	r3, #65535	; 0xffff
- 8000988:	2206      	movs	r2, #6
+ 8000988:	2205      	movs	r2, #5
  800098a:	4808      	ldr	r0, [pc, #32]	; (80009ac <main+0x9c>)
  800098c:	f004 fba9 	bl	80050e2 <HAL_UART_Receive>
-	  choice = input[5]-'1'+1;
- 8000990:	797b      	ldrb	r3, [r7, #5]
+	  choice = input[4]-'1'+1;
+ 8000990:	793b      	ldrb	r3, [r7, #4]
  8000992:	3b30      	subs	r3, #48	; 0x30
  8000994:	71fb      	strb	r3, [r7, #7]
 	  mode(choice);

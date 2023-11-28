@@ -123,7 +123,7 @@ int main(void)
 	  uint8_t choice = 0;
 	  char input[5];
 	  HAL_UART_Receive(&huart1, input, sizeof(input), 0xFFFF);
-	  choice = input[5]-'1'+1;
+	  choice = input[4]-'1'+1;
 	  mode(choice);
   }
   /* USER CODE END 3 */
