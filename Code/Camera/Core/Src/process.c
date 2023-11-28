@@ -72,13 +72,13 @@ void mode(int choice) {
 					case '3': {
 						char message_r[100];
 						LCD_Clear( 0, 0, 240, 320, GREY );
-						LCD_DrawString(0,0,"123");
+						// LCD_DrawString(0,0,"123");
 						HAL_UART_Transmit(&huart3, &signal, 1, 0xFFFF);
-						LCD_DrawString(0,8,"123");
+						// LCD_DrawString(0,8, &signal);
 						HAL_UART_Receive(&huart3, message_r, sizeof(message_r), 0xFFFF);
-						LCD_DrawString(0,16,"123");
+						LCD_DrawString(0,16, message_r);
 						HAL_UART_Transmit(&huart1, message_r, sizeof(message_r), 0xFFFF);
-						LCD_DrawString(0,32,"123");
+						// LCD_DrawString(0,100, "transmitted");
 						break;
 					}
 					case '4': {

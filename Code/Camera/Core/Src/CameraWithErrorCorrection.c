@@ -149,8 +149,11 @@ int CameraWithErrorCorrection(char* AllFaces) {
 						{
 							FIFO_PREPARE;
 							ReadSquare(SquareOfOneFace);
-							return 0;
-//							ImagDisp();
+							// HAL_Delay(1000);
+							// LCD_DrawString(150, 250, SquareOfOneFace);
+							HAL_Delay(0xFFFF);
+//							return 0;
+//							 ImagDisp();
 							Ov7725_vsync = 0;
 						}
 				 }
