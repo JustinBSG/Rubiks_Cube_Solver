@@ -39,13 +39,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  17 .debug_macro  0001aee7  00000000  00000000  00031c9e  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   00011bc4  00000000  00000000  0004cb85  2**0
+ 18 .debug_line   00011c70  00000000  00000000  0004cb85  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    0009b997  00000000  00000000  0005e749  2**0
+ 19 .debug_str    0009b993  00000000  00000000  0005e7f5  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_frame  00004218  00000000  00000000  000fa0e0  2**2
+ 20 .debug_frame  00004218  00000000  00000000  000fa188  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 000000a2  00000000  00000000  000fe2f8  2**0
+ 21 .debug_line_str 0000009e  00000000  00000000  000fe3a0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1313,11 +1313,11 @@ int main(void)
 	  uint8_t choice = 0;
  800097e:	2300      	movs	r3, #0
  8000980:	71fb      	strb	r3, [r7, #7]
-	  char input[6];
+	  char input[5];
 	  HAL_UART_Receive(&huart1, input, sizeof(input), 0xFFFF);
  8000982:	4639      	mov	r1, r7
  8000984:	f64f 73ff 	movw	r3, #65535	; 0xffff
- 8000988:	2206      	movs	r2, #6
+ 8000988:	2205      	movs	r2, #5
  800098a:	4808      	ldr	r0, [pc, #32]	; (80009ac <main+0x9c>)
  800098c:	f004 fba9 	bl	80050e2 <HAL_UART_Receive>
 	  choice = input[5]-'1'+1;

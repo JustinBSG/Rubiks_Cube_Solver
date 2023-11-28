@@ -338,8 +338,8 @@ void ReadSquare(char* SquareOfOneFace) {
 		averageRGB(G[i], SAMPLE_SIZE*SAMPLE_SIZE, &(G[i]));
 		averageRGB(B[i], SAMPLE_SIZE*SAMPLE_SIZE, &(B[i]));
 	}
-	// printColorRGB(R, G, B);
-	writeColorIntoArray(R, G, B, SquareOfOneFace);
+	printColorRGB(R, G, B);
+	// writeColorIntoArray(R, G, B, SquareOfOneFace);
 	// printArray(SquareOfOneFace);
 	// HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_RESET);
 	// HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
