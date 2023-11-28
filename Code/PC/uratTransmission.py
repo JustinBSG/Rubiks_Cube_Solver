@@ -37,6 +37,24 @@ MOVEMENT = ['F', 'R', 'L', 'B', 'U', 'D'\
 COLOR = ['w', 'r', 'y', 'b', 'g', 'o']
 CUBE_STRING = ""
 
+def change(Ori):
+    CUBESTRING = []
+    for index in range(54):
+        match(Ori[index]):
+            case ('W'):
+                CUBESTRING.append('U')
+            case ('R'):
+                CUBESTRING.append('R')
+            case ('G'):
+                CUBESTRING.append('F')
+            case ('O'):
+                CUBESTRING.append('L')
+            case ('B'):
+                CUBESTRING.append('B')
+            case ('Y'):
+                CUBESTRING.append('D')
+    return CUBESTRING
+
 def Reshuffle(difficulty):  # I think it should be define as the cube is moved from the reset state by how many moves 
     # --> difficult to define difficulty
     list_of_command = ""
@@ -101,7 +119,7 @@ while 1:
                         count = 0
                         while 1:
                             user_input = input("Please correct the cube if there is anything wrong in scanning: (eg. 4w)")
-                            if (user_input == "confirm" or (user_input[0] > "0" and user_input[0] <= "9" and COLOR.count(user_input[1]) == 1) and len(user_input) == 2):
+                            if (user_input == "confirm" or (len(user_input) == 2 and user_input[0] > "0" and user_input[0] <= "9" and COLOR.count(user_input[1]) == 1)):
                                 if (user_input == "confirm"):
                                     count += 1
                                     server.write(user_input.encode())        # --> need to deal with terminate in the board code also
@@ -117,8 +135,13 @@ while 1:
                         # print(temp)
                         CUBE_STRING = temp
                     elif (stage == "3"):
-                        # print("stage 3")
-                        solution = kociemba.solve(CUBE_STRING)
+                        # print(CUBE_STRING)
+                        # if (len(CUBE_STRING) == 55):
+                        #     CUBE_STRING = CUBE_STRING[:-1]
+                        #     print(CUBE_STRING)
+                        CUBESTRING = ''.join(change(CUBE_STRING[:-1]))
+                        print(CUBESTRING)
+                        solution = kociemba.solve(CUBESTRING)
                         print(solution)
                         solution = solution.ljust(BUFFER_SIZE, '#')
                         server.write(solution.encode())
@@ -131,7 +154,6 @@ while 1:
                                 server.write("ok")
                                 break
                         stage = "0"
-                        break
             case "2":
                 stage = "1"
                 while 1:
