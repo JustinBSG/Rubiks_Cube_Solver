@@ -57,7 +57,7 @@ def change(Ori):
 
 def Reshuffle(difficulty):  # I think it should be define as the cube is moved from the reset state by how many moves 
     # --> difficult to define difficulty
-    list_of_command = ""
+    list_of_command = []
     match(difficulty):
         case ("easy"):
             previous_movement = 'A'
@@ -89,32 +89,38 @@ def Reshuffle(difficulty):  # I think it should be define as the cube is moved f
                 list_of_command.append(movement)
                 if (number_of_moves!=HARD_MOVE-1):
                     list_of_command.append(" ")
-    list_of_command.ljust(BUFFER_SIZE, '#')
+    list_of_command = ''.join(list_of_command)
+    list_of_command = list_of_command.ljust(BUFFER_SIZE, '#')
+    print(list_of_command)
     server.write(list_of_command.encode())
     return
 
-server = serial.Serial("COM4", 115200)
+server = serial.Serial("COM4", 115200, timeout=None)
 
 mode = -1
 while 1:
-    mode = input("Please enter the mode: (eg. mode1) ")    # read mode
+    flag = 0
+    stage = "."
+    mode = input("Please enter the mode (eg. mode1): ")    # read mode
     if (mode == "mode1" or mode == "mode2"):
         server.write(mode.encode())
-        match (mode[4]):
+        match (mode[4]):    
             case "1":
-                while 1:
+                while (stage != "0"):
                     # stage = "0"
                     # print(1)
                     stage = server.read().decode("Ascii")
                     # if (stage != "0"):
                     # print(stage)
                     if (stage == "1"):
-                        user_ok = input("Please enter ok when you are ready: ")
-                        if (user_ok == "ok"):
-                            server.write(user_ok.encode()) 
-                            # stage = server.read().decode("Ascii")
-                        else:
-                            print("Wrong input, please enter ok again when you are ready")
+                        while 1:
+                            user_ok = input("Please enter ok when you are ready: ")
+                            if (user_ok == "ok"):
+                                server.write(user_ok.encode())
+                                break
+                                # stage = server.read().decode("Ascii")
+                            else:
+                                print("Wrong input, please enter ok again when you are ready")
                     elif (stage == "2"):
                         count = 0
                         while 1:
@@ -139,30 +145,57 @@ while 1:
                         # if (len(CUBE_STRING) == 55):
                         #     CUBE_STRING = CUBE_STRING[:-1]
                         #     print(CUBE_STRING)
-                        CUBESTRING = ''.join(change(CUBE_STRING[:-1]))
-                        print(CUBESTRING)
-                        solution = kociemba.solve(CUBESTRING)
-                        print(solution)
-                        solution = solution.ljust(BUFFER_SIZE, '#')
-                        server.write(solution.encode())
+                        if (flag == 0):
+                            CUBESTRING = ''.join(change(CUBE_STRING[:-1]))
+                            print(CUBESTRING)
+                            solution = kociemba.solve(CUBESTRING)
+                            print(solution)
+                            solution = solution.ljust(BUFFER_SIZE, '#')
+                            server.write(solution.encode())
+                            flag = 1
+                        else:
+                            print("continue")
+                            continue
                     elif (stage == "4"):
                         while 1:
                             user_fin = input("Please enter ok after you remove the cube:")
                             if (user_fin != "ok"):
                                 print("Wrong input. Please try again.")
                             else:
-                                server.write("ok")
+                                server.write(user_fin.encode())
                                 break
                         stage = "0"
             case "2":
-                stage = "1"
-                while 1:
-                    stage = server.read().decode()
-                    if (stage == 2):
-                        difficulty = server.read().decode()      # needs error checking?
-                        Reshuffle(difficulty)
-                    elif (stage == 3):
-                        stage = -1
-                        break
+                # while 1:
+                #     stage = server.read().decode()
+                while (stage != "0"):
+                    stage = server.read().decode("Ascii")
+                    if (stage == "1"):
+                        while 1:
+                            user_ok_2 = input("please enter ok when you are ready: ")
+                            if (user_ok_2 != "ok"):
+                                print("Wrong input. Please try again.")
+                            else:
+                                server.write(user_ok_2.encode())
+                                break
+                    elif (stage == "2" and flag == 0):
+                        while 1:
+                            difficulty = input("Please input difficulty (e.g. easy/normal/hard): ")
+                            if(difficulty != "easy" and difficulty != "normal" and difficulty != "hard"): # data valid
+                                print("Wrong input. Please try again.")
+                            else:
+                                # difficulty = server.read().decode()      # needs error checking?
+                                Reshuffle(difficulty)
+                                flag = 1
+                                break
+                    elif (stage == "3"):
+                        while 1:
+                            user_fin = input("Please enter ok after you remove the cube:")
+                            if (user_fin != "ok"):
+                                print("Wrong input. Please try again.")
+                            else:
+                                server.write(user_fin.encode())
+                                break
+                        stage = "0"
     else:
         print("You input is wrong, please enter again")

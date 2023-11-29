@@ -21,16 +21,16 @@ void mode(int choice) {
 				HAL_UART_Receive(&huart1, &signal, 1, 0xFFFF);
 				switch (signal) {
 					case '1': {
-						char message_r[2], message_t = 'T';
-						HAL_UART_Transmit(&huart3, &signal, 1, 0xFFFF);
+						char message_r[2], message_t = 'T', one = '1';
+						HAL_UART_Transmit(&huart3, &one, 1, 0xFFFF);
 						LCD_DrawChar(0,0,signal);
 						HAL_UART_Receive(&huart3, message_r, sizeof(message_r), 0xFFFF);	// ok
 						HAL_UART_Transmit(&huart1, &message_t, 1, 0xFFFF);
 						break;
 					}
 					case '2': {
-						uint8_t face = 0;
-						HAL_UART_Transmit(&huart3, &signal, 1, 0xFFFF);
+						uint8_t face = 0, two = '2';
+						HAL_UART_Transmit(&huart3, &two, 1, 0xFFFF);
 						while (face < 6) {
 							// receive signal from Control Board
 							char message_r, SquareOfOneFace[9], message_t = 'T';
@@ -99,6 +99,7 @@ void mode(int choice) {
 			break;
 		}
 		case 2: {
+			uint8_t flag = 0;
 			while (1) {
 				char signal;
 				HAL_UART_Receive(&huart1, &signal, 1, 0xFFFF);
@@ -111,10 +112,16 @@ void mode(int choice) {
 						break;
 					}
 					case '2': {
+						if (flag == 1)
+							break;
 						char message_r[100], two = '2';
-						HAL_UART_Transmit(&huart3, &two, sizeof(message_r), 0xFFFF);
+						HAL_UART_Transmit(&huart3, &two, 1, 0xFFFF);
+						LCD_DrawString(0, 0, "w");
 						HAL_UART_Receive(&huart3, message_r, sizeof(message_r), 0xFFFF);
+						LCD_DrawString(0, 10, "w");
+						LCD_DrawString(0, 20, message_r);
 						HAL_UART_Transmit(&huart1, message_r, sizeof(message_r), 0xFFFF);
+						flag = 1;
 						break;
 					}
 					case '3': {

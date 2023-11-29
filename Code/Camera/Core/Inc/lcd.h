@@ -44,11 +44,12 @@
 #define      BLUE                          0x001F	  
 #define      GREEN                         0x07E0	    
 #define      RED                           0xF800
-#define		 ORANGE						   0xFC60
+#define		 ORANGE						   0xFBE0
 #define      MAGENTA                       0xF81F	 
 #define      CYAN                          0x7FFF	   
 #define      YELLOW                        0xFFE0	 
 #define      BACKGROUND		           WHITE  
+#define		 DARK_RED					   0x8800
 
 
 #define      CMD_Set_COLUMN		   0x2A	     
