@@ -19,6 +19,7 @@ extern UART_HandleTypeDef huart1;
 //void test_servo_movement(void);
 //void test_communication_two_boards(void);
 //void test_commands(void);
-void test_scanCube(uint8_t*);
+//void test_scanCube(uint8_t*);
+void test_delay(int*);
 
 #endif /* INC_TEST_H_ */

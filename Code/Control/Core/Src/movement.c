@@ -106,7 +106,7 @@ void movement_aB(void) {
 // Number of Delay: 13
 void movement_U(void) {
 	servo_pull(east_back);
-//	HAL_Delay(DELAY_TIME_sP);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	clockwise_90(south_front);
@@ -116,7 +116,7 @@ void movement_U(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
-//	HAL_Delay(DELAY_TIME_sP);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(north_front);
@@ -128,7 +128,7 @@ void movement_U(void) {
 	clockwise_90(east_front);
 	HAL_Delay(DELAY_TIME_90);
 	servo_pull(east_back);
-//	HAL_Delay(DELAY_TIME_sP);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	anticlockwise_90(south_front);
@@ -139,7 +139,7 @@ void movement_U(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
-//	HAL_Delay(DELAY_TIME_sP);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(south_front);
@@ -153,7 +153,7 @@ void movement_U(void) {
 // Number of Delay: 13
 void movement_aU(void) {
 	servo_pull(east_back);
-//	HAL_Delay(DELAY_TIME_sP);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	clockwise_90(south_front);
@@ -163,7 +163,7 @@ void movement_aU(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
-//	HAL_Delay(DELAY_TIME_sP);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(north_front);
@@ -175,7 +175,7 @@ void movement_aU(void) {
 	anticlockwise_90(east_front);
 	HAL_Delay(DELAY_TIME_90);
 	servo_pull(east_back);
-//	HAL_Delay(DELAY_TIME_sP);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	anticlockwise_90(south_front);
@@ -186,7 +186,7 @@ void movement_aU(void) {
 	servo_push(west_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
-//	HAL_Delay(DELAY_TIME_sP);
+	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	centre_0(south_front);

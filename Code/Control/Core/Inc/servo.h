@@ -12,9 +12,9 @@
 #include "tim.h"
 #include "usart.h"
 
-#define DELAY_TIME_90 	500
-#define DELAY_TIME_180 	900
-#define DELAY_TIME_P	500
+#define DELAY_TIME_90 	350
+#define DELAY_TIME_180 	620
+#define DELAY_TIME_P	370
 #define DELAY_TIME_sP	200
 
 #define CENTRE_DEGREE_1 	95

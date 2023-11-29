@@ -7,45 +7,76 @@
 //
 #include "test.h"
 
-void test_scanCube(uint8_t *flag) {
-	if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == SET && (*flag) != 7) {
-		LCD_Clear(0, 0, 240, 320, BACKGROUND);
-		switch (*flag) {
-			case 0:
-				LCD_DrawString(0,0,"Scan up");
-				movement_scan_up();
-				break;
-			case 1:
-				LCD_DrawString(0,0,"Scan east");
-				movement_scan_east();
-				break;
-			case 2:
-				LCD_DrawString(0,0,"Scan south");
-				movement_scan_south();
-				break;
-			case 3:
-				LCD_DrawString(0,0,"Scan down");
-				movement_scan_down();
-				break;
-			case 4:
-				LCD_DrawString(0,0,"Scan west");
-				movement_scan_west();
-				break;
-			case 5:
-				LCD_DrawString(0,0,"Scan north");
-				movement_scan_north();
-				break;
-			case 6:
-				LCD_DrawString(0,0,"Recover");
-				movement_scan_north_r();
-				break;
-		}
-		if ((*flag) != 6)
-			(*flag)++;
-		else
-			(*flag) = 31;
+void test_delay(int *flag) {
+	if (*flag == 0 && HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == SET) {
+		servo_push(east_back);
+		HAL_Delay(DELAY_TIME_sP);
+		servo_push(south_back);
+		HAL_Delay(DELAY_TIME_P);
+		uint32_t last_tick = HAL_GetTick();
+		char string[20];
+		movement_scan_up();
+		movement_scan_east();
+		movement_scan_south();
+		movement_scan_down();
+		movement_scan_west();
+		movement_scan_north();
+		movement_scan_north_r();
+		sprintf(string, "It costs %dms", (HAL_GetTick() - last_tick));
+		last_tick = HAL_GetTick();
+		LCD_DrawString(0, 0, string);
+		sprintf(string, "Delay time 90: %d", DELAY_TIME_90);
+		LCD_DrawString(0,16, string);
+		sprintf(string, "Delay time 180: %d", DELAY_TIME_180);
+		LCD_DrawString(0,16*2, string);
+		sprintf(string, "Delay time P: %d", DELAY_TIME_P);
+		LCD_DrawString(0,16*3, string);
+		sprintf(string, "Delay time sP: %d", DELAY_TIME_sP);
+		LCD_DrawString(0,16*4, string);
+		remove_cube();
+		(*flag)++;
 	}
 }
+
+//void test_scanCube(uint8_t *flag) {
+//	if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == SET && (*flag) != 7) {
+//		LCD_Clear(0, 0, 240, 320, BACKGROUND);
+//		switch (*flag) {
+//			case 0:
+//				LCD_DrawString(0,0,"Scan up");
+//				movement_scan_up();
+//				break;
+//			case 1:
+//				LCD_DrawString(0,0,"Scan east");
+//				movement_scan_east();
+//				break;
+//			case 2:
+//				LCD_DrawString(0,0,"Scan south");
+//				movement_scan_south();
+//				break;
+//			case 3:
+//				LCD_DrawString(0,0,"Scan down");
+//				movement_scan_down();
+//				break;
+//			case 4:
+//				LCD_DrawString(0,0,"Scan west");
+//				movement_scan_west();
+//				break;
+//			case 5:
+//				LCD_DrawString(0,0,"Scan north");
+//				movement_scan_north();
+//				break;
+//			case 6:
+//				LCD_DrawString(0,0,"Recover");
+//				movement_scan_north_r();
+//				break;
+//		}
+//		if ((*flag) != 6)
+//			(*flag)++;
+//		else
+//			(*flag) = 31;
+//	}
+//}
 //
 //void test_servo_movement(void) {
 //	char string[20];
