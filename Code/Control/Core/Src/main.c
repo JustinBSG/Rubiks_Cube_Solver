@@ -109,19 +109,6 @@ int main(void)
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
 
   LCD_INIT();
-  servo_pull(2);
-  servo_pull(4);
-  servo_pull(6);
-  servo_pull(8);
-  HAL_Delay(DELAY_TIME_P);
-  centre_0(1);
-  centre_0(3);
-  centre_0(5);
-  centre_0(7);
-  HAL_Delay(DELAY_TIME_90);
-  servo_push(north_back);
-  servo_push(west_back);
-  int flag = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -131,13 +118,12 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-//	  servo_init();
-//	  uint8_t choice = 0;
-//	  char input[5];
-//	  HAL_UART_Receive(&huart1, input, sizeof(input), 0xFFFF);
-//	  choice = input[4]-'1'+1;
-//	  mode(choice);
-	  test_delay(&flag);
+	  servo_init();
+	  uint8_t choice = 0;
+	  char input[5];
+	  HAL_UART_Receive(&huart1, input, sizeof(input), 0xFFFF);
+	  choice = input[4]-'1'+1;
+	  mode(choice);
   }
   /* USER CODE END 3 */
 }
