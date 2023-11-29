@@ -40,7 +40,7 @@ uint16_t convertColor2RGB(char Color) { // need change
 		return BLUE;
 	}
 	if (Color == 'R') {
-		return RED;
+		return DARK_RED;
 	}
 	return CYAN; // a color to indicate wrong color
 }
@@ -153,7 +153,7 @@ int CameraWithErrorCorrection(char* AllFaces) {
 							// LCD_DrawString(150, 250, SquareOfOneFace);
 							HAL_Delay(0xFFFF);
 //							return 0;
-//							 ImagDisp();
+							// ImagDisp();
 							Ov7725_vsync = 0;
 						}
 				 }
