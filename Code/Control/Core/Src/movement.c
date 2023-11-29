@@ -920,7 +920,6 @@ void movement_scan_up(void) {
 	anticlockwise_90(north_front);
 	HAL_Delay(DELAY_TIME_90);
 	servo_push(north_back);
-	HAL_Delay(DELAY_TIME_sP);
 	servo_push(south_back);
 	HAL_Delay(DELAY_TIME_P);
 	servo_pull(east_back);
@@ -948,23 +947,82 @@ void movement_scan_up_r(void) {
 }
 
 void movement_scan_north(void) {
-	movement_aZ();
-	movement_aZ();
-	movement_aX();
-	movement_scan_up();
+	servo_push(east_back);
+	servo_push(west_back);
+	HAL_Delay(DELAY_TIME_P);
+	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_sP);
+	servo_pull(south_back);
+	HAL_Delay(DELAY_TIME_P);
+	centre_0(south_front);
+	centre_0(north_front);
+	HAL_Delay(DELAY_TIME_90);
+	servo_push(south_back);
+	servo_push(north_back);
+	HAL_Delay(DELAY_TIME_P);
+	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_sP);
+	servo_pull(west_back);
+	HAL_Delay(DELAY_TIME_P);
+	clockwise_90(south_front);
+	anticlockwise_90(north_front);
+	HAL_Delay(DELAY_TIME_90);
 }
 
 void movement_scan_north_r(void) {
-	movement_scan_up_r();
-	movement_X();
-	movement_Z();
-	movement_Z();
+	anticlockwise_90(south_front);
+	clockwise_90(north_front);
+	HAL_Delay(DELAY_TIME_180);
+	servo_push(east_back);
+	servo_push(west_back);
+	HAL_Delay(DELAY_TIME_P);
+	servo_pull(south_back);
+	HAL_Delay(DELAY_TIME_sP);
+	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_P);
+	clockwise_90(west_front);
+	anticlockwise_90(east_front);
+	centre_0(north_front);
+	centre_0(south_front);
+	HAL_Delay(DELAY_TIME_90);
+	servo_push(north_back);
+	servo_push(south_back);
+	HAL_Delay(DELAY_TIME_P);
+	servo_pull(west_back);
+	HAL_Delay(DELAY_TIME_sP);
+	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_P);
+	centre_0(east_front);
+	centre_0(west_front);
+	HAL_Delay(DELAY_TIME_90);
+	servo_push(east_back);
+	servo_push(west_back);
+	HAL_Delay(DELAY_TIME_P);
 }
 
 void movement_scan_east(void) {
-	movement_X();
-	movement_aZ();
-	movement_scan_up();
+	servo_push(east_back);
+	servo_push(west_back);
+	HAL_Delay(DELAY_TIME_P);
+	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_sP);
+	servo_pull(south_back);
+	HAL_Delay(DELAY_TIME_P);
+	centre_0(north_front);
+	centre_0(south_front);
+	clockwise_90(east_front);
+	anticlockwise_90(west_front);
+	HAL_Delay(DELAY_TIME_90);
+	servo_push(north_back);
+	servo_push(south_back);
+	HAL_Delay(DELAY_TIME_P);
+	servo_pull(west_back);
+	HAL_Delay(DELAY_TIME_sP);
+	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_P);
+	anticlockwise_90(south_front);
+	clockwise_90(north_front);
+	HAL_Delay(DELAY_TIME_90);
 }
 
 void movement_scan_east_r(void) {
@@ -974,13 +1032,16 @@ void movement_scan_east_r(void) {
 }
 
 void movement_scan_south(void) {
+	centre_0(north_front);
+	centre_0(south_front);
+	HAL_Delay(DELAY_TIME_90);
+	servo_push(east_back);
+	servo_push(west_back);
+	HAL_Delay(DELAY_TIME_P);
 	servo_pull(north_back);
 	HAL_Delay(DELAY_TIME_sP);
 	servo_pull(south_back);
 	HAL_Delay(DELAY_TIME_P);
-	clockwise_90(east_front);
-	anticlockwise_90(west_front);
-	HAL_Delay(DELAY_TIME_90);
 }
 
 void movement_scan_south_r(void) {
@@ -994,9 +1055,19 @@ void movement_scan_south_r(void) {
 }
 
 void movement_scan_west(void) {
-	movement_X();
-	movement_Z();
-	movement_scan_up();
+	centre_0(east_front);
+	centre_0(west_front);
+	HAL_Delay(DELAY_TIME_90);
+	servo_push(north_back);
+	servo_push(south_back);
+	HAL_Delay(DELAY_TIME_P);
+	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_sP);
+	servo_pull(west_back);
+	HAL_Delay(DELAY_TIME_P);
+	clockwise_90(south_front);
+	anticlockwise_90(north_front);
+	HAL_Delay(DELAY_TIME_90);
 }
 
 void movement_scan_west_r(void) {
@@ -1006,9 +1077,26 @@ void movement_scan_west_r(void) {
 }
 
 void movement_scan_down(void) {
-	movement_X();
-	movement_X();
-	movement_scan_up();
+	servo_push(north_back);
+	servo_push(south_back);
+	HAL_Delay(DELAY_TIME_P);
+	servo_pull(west_back);
+	HAL_Delay(DELAY_TIME_sP);
+	servo_pull(east_back);
+	HAL_Delay(DELAY_TIME_P);
+	centre_0(east_front);
+	centre_0(west_front);
+	HAL_Delay(DELAY_TIME_90);
+	servo_push(east_back);
+	servo_push(west_back);
+	HAL_Delay(DELAY_TIME_P);
+	servo_pull(north_back);
+	HAL_Delay(DELAY_TIME_sP);
+	servo_pull(south_back);
+	HAL_Delay(DELAY_TIME_P);
+	clockwise_90(east_front);
+	anticlockwise_90(west_front);
+	HAL_Delay(DELAY_TIME_90);
 }
 
 void movement_scan_down_r(void) {

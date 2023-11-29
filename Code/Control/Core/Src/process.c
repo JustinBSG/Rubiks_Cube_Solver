@@ -127,7 +127,6 @@ void ScanCube(void) {
 				movement_scan_up();
 				HAL_UART_Transmit(&huart1, &signal_t, 1, 0xFFFF); // ackonwledge Camera Board to capture image
 				HAL_UART_Receive(&huart1, &signal_r, 1, 0xFFFF); // Camera Board finish capturing image
-				movement_scan_up_r();
 				break;
 			}
 			// north
@@ -143,7 +142,6 @@ void ScanCube(void) {
 				movement_scan_east();
 				HAL_UART_Transmit(&huart1, &signal_t, 1, 0xFFFF);
 				HAL_UART_Receive(&huart1, &signal_r, 1, 0xFFFF);
-				movement_scan_east_r();
 				break;
 			}
 			// south
@@ -151,7 +149,6 @@ void ScanCube(void) {
 				movement_scan_south();
 				HAL_UART_Transmit(&huart1, &signal_t, 1, 0xFFFF);
 				HAL_UART_Receive(&huart1, &signal_r, 1, 0xFFFF);
-				movement_scan_south_r();
 				break;
 			}
 			// west
@@ -159,7 +156,6 @@ void ScanCube(void) {
 				movement_scan_west();
 				HAL_UART_Transmit(&huart1, &signal_t, 1, 0xFFFF);
 				HAL_UART_Receive(&huart1, &signal_r, 1, 0xFFFF);
-				movement_scan_west_r();
 				break;
 			}
 			// down
@@ -167,7 +163,6 @@ void ScanCube(void) {
 				movement_scan_down();
 				HAL_UART_Transmit(&huart1, &signal_t, 1, 0xFFFF);
 				HAL_UART_Receive(&huart1, &signal_r, 1, 0xFFFF);
-				movement_scan_down_r();
 				break;
 			}
 		}

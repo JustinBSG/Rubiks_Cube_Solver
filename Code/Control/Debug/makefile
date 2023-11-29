@@ -60,8 +60,8 @@ all: main-build
 main-build: Control.elf secondary-outputs
 
 # Tool invocations
-Control.elf Control.map: $(OBJS) $(USER_OBJS) /Users/him/Documents/University/Year\ 3/Fall_Sem/ELEC3300/Project/clone/TwoParts/Rubiks_Cube_Solver/Code/Control/STM32F103VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Control.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/Users/him/Documents/University/Year 3/Fall_Sem/ELEC3300/Project/clone/TwoParts/Rubiks_Cube_Solver/Code/Control/STM32F103VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Control.elf Control.map: $(OBJS) $(USER_OBJS) /Users/justin/Library/CloudStorage/OneDrive-Personal/Documents/University/Year\ 3\ Fall/ELEC3300/Project/Code/Control/STM32F103VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Control.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/Users/justin/Library/CloudStorage/OneDrive-Personal/Documents/University/Year 3 Fall/ELEC3300/Project/Code/Control/STM32F103VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
