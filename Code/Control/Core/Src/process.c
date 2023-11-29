@@ -41,7 +41,9 @@ int splitCharArray(char src[], char target[][SIZE_OF_ONE_MOVEMENT]) {
  * @param listOfCommand[][SIZE_OF_ONE_MOVEMENT] string that store different movements into seperated rows
  */
 void ReadInput(char input[], int *size, char listOfCommand[][SIZE_OF_ONE_MOVEMENT]) {
-	HAL_UART_Receive(&huart1, input, sizeof(input), 0xFFFF);
+	LCD_DrawString(0,16, "Not yet");
+	HAL_UART_Receive(&huart1, input, 100, 0xFFFF);
+	LCD_DrawString(0,0, input);
     (*size) = splitCharArray(input, listOfCommand);
 }
 
@@ -53,208 +55,52 @@ void ReadInput(char input[], int *size, char listOfCommand[][SIZE_OF_ONE_MOVEMEN
 void makeOneMovement(char Movement[]) {
 	switch (Movement[0]) {
 		case 'F':
-			if (Movement[2] != '\0')
-				movement_aF2();
-			else if (Movement[1] == '\0' && Movement[2] == '\0')
-				movement_F();
-			else if (Movement[1] == '2')
+			if (Movement[1] == '2')
 				movement_F2();
-			else
+			else if (Movement[1] == '\'')
 				movement_aF();
+			else
+				movement_F();
 			break;
 		case 'R':
-			if (Movement[2] != '\0')
-				movement_aR2();
-			else if (Movement[1] == '\0' && Movement[2] == '\0')
-				movement_R();
-			else if (Movement[1] == '2')
+			if (Movement[1] == '2')
 				movement_R2();
-			else
+			else if (Movement[1] == '\'')
 				movement_aR();
+			else
+				movement_R();
 			break;
 		case 'L':
-			if (Movement[2] != '\0')
-				movement_aL2();
-			else if (Movement[1] == '\0' && Movement[2] == '\0')
-				movement_L();
-			else if (Movement[1] == '2')
+			if (Movement[1] == '2')
 				movement_L2();
-			else
+			else if (Movement[1] == '\'')
 				movement_aL();
+			else
+				movement_L();
 			break;
 		case 'B':
-			if (Movement[2] != '\0')
-				movement_aB2();
-			else if (Movement[1] == '\0' && Movement[2] == '\0')
-				movement_B();
-			else if (Movement[1] == '2')
+			if (Movement[1] == '2')
 				movement_B2();
-			else
+			else if (Movement[1] == '\'')
 				movement_aB();
+			else
+				movement_B();
 			break;
 		case 'U':
-			if (Movement[2] != '\0')
-				movement_aU2();
-			else if (Movement[1] == '\0' && Movement[2] == '\0')
-				movement_U();
-			else if (Movement[1] == '2')
+			if (Movement[1] == '2')
 				movement_U2();
-			else
+			else if (Movement[1] == '\'')
 				movement_aU();
+			else
+				movement_U();
 			break;
 		case 'D':
-			if (Movement[2] != '\0')
-				movement_aD2();
-			else if (Movement[1] == '\0' && Movement[2] == '\0')
-				movement_D();
-			else if (Movement[1] == '2')
+			if (Movement[1] == '2')
 				movement_D2();
-			else
+			else if (Movement[1] == '\'')
 				movement_aD();
-			break;
-		case 'X':
-			if (Movement[2] != '\0') {
-				movement_aX();
-				movement_aX();
-			} else if (Movement[1] == '\0' && Movement[2] == '\0')
-				movement_X();
-			else if (Movement[1] == '2') {
-				movement_X();
-				movement_X();
-			} else
-				movement_aX();
-			break;
-		case 'Y':
-			if (Movement[2] != '\0') {
-				movement_aY();
-				movement_aY();
-			} else if (Movement[1] == '\0' && Movement[2] == '\0')
-				movement_Y();
-			else if (Movement[1] == '2') {
-				movement_Y();
-				movement_Y();
-			} else
-				movement_aY();
-			break;
-		case 'Z':
-			if (Movement[2] != '\0') {
-				movement_aZ();
-				movement_aZ();
-			} else if (Movement[1] == '\0' && Movement[2] == '\0')
-				movement_Z();
-			else if (Movement[1] == '2') {
-				movement_Z();
-				movement_Z();
-			} else
-				movement_aZ();
-			break;
-		case 'M':
-			if (Movement[2] != '\0') {
-				movement_aM();
-				movement_aM();
-			} else if (Movement[1] == '\0' && Movement[2] == '\0')
-				movement_M();
-			else if (Movement[1] == '2') {
-				movement_M();
-				movement_M();
-			} else
-				movement_aM();
-			break;
-		case 'E':
-			if (Movement[2] != '\0') {
-				movement_aE();
-				movement_aE();
-			} else if (Movement[1] == '\0' && Movement[2] == '\0')
-				movement_E();
-			else if (Movement[1] == '2') {
-				movement_E();
-				movement_E();
-			} else
-				movement_aE();
-			break;
-		case 'S':
-			if (Movement[2] != '\0') {
-				movement_aS();
-				movement_aS();
-			} else if (Movement[1] == '\0' && Movement[2] == '\0')
-				movement_S();
-			else if (Movement[1] == '2') {
-				movement_S();
-				movement_S();
-			} else
-				movement_aS();
-			break;
-		case 'u':
-			if (Movement[2] != '\0') {
-				movement_au();
-				movement_au();
-			} else if (Movement[1] == '\0' && Movement[2] == '\0')
-				movement_u();
-			else if (Movement[1] == '2') {
-				movement_u();
-				movement_u();
-			} else
-				movement_au();
-			break;
-		case 'l':
-			if (Movement[2] != '\0') {
-				movement_al();
-				movement_al();
-			} else if (Movement[1] == '\0' && Movement[2] == '\0')
-				movement_l();
-			else if (Movement[1] == '2') {
-				movement_l();
-				movement_l();
-			} else
-				movement_al();
-			break;
-		case 'f':
-			if (Movement[2] != '\0') {
-				movement_af();
-				movement_af();
-			} else if (Movement[1] == '\0' && Movement[2] == '\0')
-				movement_f();
-			else if (Movement[1] == '2') {
-				movement_f();
-				movement_f();
-			} else
-				movement_af();
-			break;
-		case 'r':
-			if (Movement[2] != '\0') {
-				movement_ar();
-				movement_ar();
-			} else if (Movement[1] == '\0' && Movement[2] == '\0')
-				movement_r();
-			else if (Movement[1] == '2') {
-				movement_r();
-				movement_r();
-			} else
-				movement_ar();
-			break;
-		case 'b':
-			if (Movement[2] != '\0') {
-				movement_ab();
-				movement_ab();
-			} else if (Movement[1] == '\0' && Movement[2] == '\0')
-				movement_b();
-			else if (Movement[1] == '2') {
-				movement_b();
-				movement_b();
-			} else
-				movement_ab();
-			break;
-		case 'd':
-			if (Movement[2] != '\0') {
-				movement_ad();
-				movement_ad();
-			} else if (Movement[1] == '\0' && Movement[2] == '\0')
-				movement_d();
-			else if (Movement[1] == '2') {
-				movement_d();
-				movement_d();
-			} else
-				movement_ad();
+			else
+				movement_D();
 			break;
 	}
 }
@@ -281,7 +127,6 @@ void ScanCube(void) {
 				movement_scan_up();
 				HAL_UART_Transmit(&huart1, &signal_t, 1, 0xFFFF); // ackonwledge Camera Board to capture image
 				HAL_UART_Receive(&huart1, &signal_r, 1, 0xFFFF); // Camera Board finish capturing image
-				movement_scan_up_r();
 				break;
 			}
 			// north
@@ -297,7 +142,6 @@ void ScanCube(void) {
 				movement_scan_east();
 				HAL_UART_Transmit(&huart1, &signal_t, 1, 0xFFFF);
 				HAL_UART_Receive(&huart1, &signal_r, 1, 0xFFFF);
-				movement_scan_east_r();
 				break;
 			}
 			// south
@@ -305,7 +149,6 @@ void ScanCube(void) {
 				movement_scan_south();
 				HAL_UART_Transmit(&huart1, &signal_t, 1, 0xFFFF);
 				HAL_UART_Receive(&huart1, &signal_r, 1, 0xFFFF);
-				movement_scan_south_r();
 				break;
 			}
 			// west
@@ -313,7 +156,6 @@ void ScanCube(void) {
 				movement_scan_west();
 				HAL_UART_Transmit(&huart1, &signal_t, 1, 0xFFFF);
 				HAL_UART_Receive(&huart1, &signal_r, 1, 0xFFFF);
-				movement_scan_west_r();
 				break;
 			}
 			// down
@@ -321,7 +163,6 @@ void ScanCube(void) {
 				movement_scan_down();
 				HAL_UART_Transmit(&huart1, &signal_t, 1, 0xFFFF);
 				HAL_UART_Receive(&huart1, &signal_r, 1, 0xFFFF);
-				movement_scan_down_r();
 				break;
 			}
 		}
@@ -339,7 +180,7 @@ void ScanCube(void) {
 void mode(uint8_t choice) {
 	switch (choice) {
 		case 1: {
-			char listOfCommand[100][SIZE_OF_ONE_MOVEMENT];
+			static char listOfCommand[100][SIZE_OF_ONE_MOVEMENT];
 			char receive[100];
 			char stage, signal;
 			int size;

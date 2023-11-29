@@ -13,6 +13,7 @@ extern uint8_t Ov7725_vsync;
 void mode(int choice) {
 	switch (choice) {
 		case 1: {
+			uint8_t flag = 0;
 			while (1) {
 				char signal;
 				char AllFaces[55];
@@ -70,20 +71,23 @@ void mode(int choice) {
 						break;
 					}
 					case '3': {
+						if (flag == 1)
+							break;
 						char message_r[100];
 						LCD_Clear( 0, 0, 240, 320, GREY );
-						LCD_DrawString(0,0,"123");
+						// LCD_DrawString(0,0,"123");
 						HAL_UART_Transmit(&huart3, &signal, 1, 0xFFFF);
-						LCD_DrawString(0,8,"123");
+						// LCD_DrawString(0,8, &signal);
 						HAL_UART_Receive(&huart3, message_r, sizeof(message_r), 0xFFFF);
-						LCD_DrawString(0,16,"123");
+						LCD_DrawString(0,16, message_r);
 						HAL_UART_Transmit(&huart1, message_r, sizeof(message_r), 0xFFFF);
-						LCD_DrawString(0,32,"123");
+						flag = 1;
+						// LCD_DrawString(0,100, "transmitted");
 						break;
 					}
 					case '4': {
-						char message_r[2], message_t = 'T';
-						HAL_UART_Transmit(&huart3, &signal, 1, 0xFFFF);
+						char message_r[2], message_t = 'T', four = '4';
+						HAL_UART_Transmit(&huart3, &four, 1, 0xFFFF);
 						HAL_UART_Receive(&huart3, message_r, sizeof(message_r), 0xFFFF);
 						HAL_UART_Transmit(&huart1, &message_t, 1, 0xFFFF);
 						break;
@@ -100,19 +104,22 @@ void mode(int choice) {
 				HAL_UART_Receive(&huart1, &signal, 1, 0xFFFF);
 				switch (signal) {
 					case '1': {
-						char message_r[2], message_t = 'T';
+						char message_r[2], message_t = 'T', one = '1';
+						HAL_UART_Transmit(&huart3, &one, 1, 0xFFFF);
 						HAL_UART_Receive(&huart3, message_r, sizeof(message_r), 0xFFFF);
 						HAL_UART_Transmit(&huart1, &message_t, 1, 0xFFFF);
 						break;
 					}
 					case '2': {
-						char message_r[100];
+						char message_r[100], two = '2';
+						HAL_UART_Transmit(&huart3, &two, sizeof(message_r), 0xFFFF);
 						HAL_UART_Receive(&huart3, message_r, sizeof(message_r), 0xFFFF);
 						HAL_UART_Transmit(&huart1, message_r, sizeof(message_r), 0xFFFF);
 						break;
 					}
 					case '3': {
-						char message_r[2], message_t = 'T';
+						char message_r[2], message_t = 'T', three = '3';
+						HAL_UART_Transmit(&huart3, &three, 1, 0xFFFF);
 						HAL_UART_Receive(&huart3, message_r, sizeof(message_r), 0xFFFF);
 						HAL_UART_Transmit(&huart1, &message_t, 1, 0xFFFF);
 						break;

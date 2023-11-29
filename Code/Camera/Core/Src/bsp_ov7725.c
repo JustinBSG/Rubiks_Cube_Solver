@@ -233,24 +233,45 @@ void printColor(int R, int G, int B, int row, int col) { // need to change the w
 	x += 8;
 	LCD_DrawString(x, y, ".");
 	x += 8;
-	if (G > 45) {
-		LCD_DrawString(x, y, "Yellow");
-	} else {
-		if (R < 8) {
-			if (G > 30) {
-				LCD_DrawString(x, y, "Green");
-			} else {
-				LCD_DrawString(x, y, "Blue");
-			}
+//	if (G > 45) {
+//		LCD_DrawString(x, y, "Yellow");
+//	} else {
+//		if (R < 8) {
+//			if (G > 30) {
+//				LCD_DrawString(x, y, "Green");
+//			} else {
+//				LCD_DrawString(x, y, "Blue");
+//			}
+//		} else {
+//			if (B > 13) {
+//				LCD_DrawString(x, y, "White");
+//			} else {
+//				if (G < 24) {
+//					LCD_DrawString(x, y, "Red");
+//				} else {
+//					LCD_DrawString(x, y, "Orange");
+//				}
+//			}
+//		}
+//	}
+	if (B <= 10) {
+		if (R < 5){
+			LCD_DrawString(x, y, "Green");
 		} else {
-			if (B > 13) {
+			if (G < 10) {
+				LCD_DrawString(x, y, "Red");
+			} else {
+				LCD_DrawString(x, y, "Orange");
+			}
+		}
+	} else {
+		if (R < 5) {
+			LCD_DrawString(x, y, "Blue");
+		} else {
+			if (B > 20) {
 				LCD_DrawString(x, y, "White");
 			} else {
-				if (G < 24) {
-					LCD_DrawString(x, y, "Red");
-				} else {
-					LCD_DrawString(x, y, "Orange");
-				}
+				LCD_DrawString(x, y, "Yellow");
 			}
 		}
 	}
@@ -288,27 +309,48 @@ void detect_sum(uint16_t i, uint16_t j, uint16_t Camera_Data, int* R, int* G, in
 void writeColorIntoArray(int* R, int* G, int* B, char* SquareOfOneFace) {
 	// content the same with printColor()
 	for (int num=0; num<9; num++) {
-		if (G > 45) {
-				SquareOfOneFace[num] = 'Y';
+//		if (G > 45) {
+//			SquareOfOneFace[num] = 'Y';
+//		} else {
+//			if (R < 8) {
+//				if (G > 30) {
+//					SquareOfOneFace[num] = 'G';
+//				} else {
+//					SquareOfOneFace[num] = 'B';
+//				}
+//			} else {
+//				if (B > 13) {
+//					SquareOfOneFace[num] = 'W';
+//				} else {
+//					if (G < 24) {
+//						SquareOfOneFace[num] = 'R';
+//					} else {
+//						SquareOfOneFace[num] = 'O';
+//					}
+//				}
+//			}
+//		}
+		if (B[num] <= 10) {
+			if (R[num] < 5){
+				SquareOfOneFace[num] = 'G';
 			} else {
-				if (R < 8) {
-					if (G > 30) {
-						SquareOfOneFace[num] = 'G';
-					} else {
-						SquareOfOneFace[num] = 'B';
-					}
+				if (G[num] < 10) {
+					SquareOfOneFace[num] = 'R';
 				} else {
-					if (B > 13) {
-						SquareOfOneFace[num] = 'W';
-					} else {
-						if (G < 24) {
-							SquareOfOneFace[num] = 'R';
-						} else {
-							SquareOfOneFace[num] = 'O';
-						}
-					}
+					SquareOfOneFace[num] = 'O';
 				}
 			}
+		} else {
+			if (R[num] < 5) {
+				SquareOfOneFace[num] = 'B';
+			} else {
+				if (B[num] > 20) {
+					SquareOfOneFace[num] = 'W';
+				} else {
+					SquareOfOneFace[num] = 'Y';
+				}
+			}
+		}
 	}
 }
 
