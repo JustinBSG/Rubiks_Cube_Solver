@@ -57,7 +57,7 @@ def change(Ori):
 
 def Reshuffle(difficulty):  # I think it should be define as the cube is moved from the reset state by how many moves 
     # --> difficult to define difficulty
-    list_of_command = ""
+    list_of_command = []
     match(difficulty):
         case ("easy"):
             previous_movement = 'A'
@@ -89,7 +89,9 @@ def Reshuffle(difficulty):  # I think it should be define as the cube is moved f
                 list_of_command.append(movement)
                 if (number_of_moves!=HARD_MOVE-1):
                     list_of_command.append(" ")
-    list_of_command.ljust(BUFFER_SIZE, '#')
+    list_of_command = ''.join(list_of_command)
+    list_of_command = list_of_command.ljust(BUFFER_SIZE, '#')
+    print(list_of_command)
     server.write(list_of_command.encode())
     return
 
@@ -99,7 +101,7 @@ mode = -1
 while 1:
     flag = 0
     stage = "."
-    mode = input("Please enter the mode: (eg. mode1) ")    # read mode
+    mode = input("Please enter the mode (eg. mode1): ")    # read mode
     if (mode == "mode1" or mode == "mode2"):
         server.write(mode.encode())
         match (mode[4]):    
@@ -167,10 +169,10 @@ while 1:
                 # while 1:
                 #     stage = server.read().decode()
                 while (stage != "0"):
-                    stage = server.read().decode()
+                    stage = server.read().decode("Ascii")
                     if (stage == "1"):
                         while 1:
-                            user_ok_2 = input("please enter when you are ready: ")
+                            user_ok_2 = input("please enter ok when you are ready: ")
                             if (user_ok_2 != "ok"):
                                 print("Wrong input. Please try again.")
                             else:
@@ -178,15 +180,15 @@ while 1:
                                 break
                     elif (stage == "2" and flag == 0):
                         while 1:
-                            difficulty = input("Please input difficulty: (e.g. easy/normal/hard)")
-                            if(difficulty != "easy" or difficulty != "normal" or difficulty != "hard"): # data valid
+                            difficulty = input("Please input difficulty (e.g. easy/normal/hard): ")
+                            if(difficulty != "easy" and difficulty != "normal" and difficulty != "hard"): # data valid
                                 print("Wrong input. Please try again.")
                             else:
-                                difficulty = server.read().decode()      # needs error checking?
+                                # difficulty = server.read().decode()      # needs error checking?
                                 Reshuffle(difficulty)
                                 flag = 1
                                 break
-                    elif (stage == 3):
+                    elif (stage == "3"):
                         while 1:
                             user_fin = input("Please enter ok after you remove the cube:")
                             if (user_fin != "ok"):
