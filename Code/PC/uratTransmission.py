@@ -55,8 +55,7 @@ def change(Ori):
                 CUBESTRING.append('D')
     return CUBESTRING
 
-def Reshuffle(difficulty):  # I think it should be define as the cube is moved from the reset state by how many moves 
-    # --> difficult to define difficulty
+def Reshuffle(difficulty): 
     list_of_command = []
     match(difficulty):
         case ("easy"):
@@ -107,18 +106,13 @@ while 1:
         match (mode[4]):    
             case "1":
                 while (stage != "0"):
-                    # stage = "0"
-                    # print(1)
                     stage = server.read().decode("Ascii")
-                    # if (stage != "0"):
-                    # print(stage)
                     if (stage == "1"):
                         while 1:
                             user_ok = input("Please enter ok when you are ready: ")
                             if (user_ok == "ok"):
                                 server.write(user_ok.encode())
                                 break
-                                # stage = server.read().decode("Ascii")
                             else:
                                 print("Wrong input, please enter ok again when you are ready")
                     elif (stage == "2"):
@@ -130,7 +124,6 @@ while 1:
                                     count += 1
                                     server.write(user_input.encode())        # --> need to deal with terminate in the board code also
                                     if (count == 6):
-                                        # print("face = 6, break")
                                         break
                                 else:
                                     user_input = user_input.ljust(7, "#")
@@ -138,13 +131,8 @@ while 1:
                             else:
                                 print("Wrong input. Please enter again if you see something wrong in the scanning data")
                         temp = server.read(size=55).decode()
-                        # print(temp)
                         CUBE_STRING = temp
                     elif (stage == "3"):
-                        # print(CUBE_STRING)
-                        # if (len(CUBE_STRING) == 55):
-                        #     CUBE_STRING = CUBE_STRING[:-1]
-                        #     print(CUBE_STRING)
                         if (flag == 0):
                             CUBESTRING = ''.join(change(CUBE_STRING[:-1]))
                             print(CUBESTRING)
@@ -166,8 +154,6 @@ while 1:
                                 break
                         stage = "0"
             case "2":
-                # while 1:
-                #     stage = server.read().decode()
                 while (stage != "0"):
                     stage = server.read().decode("Ascii")
                     if (stage == "1"):
@@ -184,7 +170,6 @@ while 1:
                             if(difficulty != "easy" and difficulty != "normal" and difficulty != "hard"): # data valid
                                 print("Wrong input. Please try again.")
                             else:
-                                # difficulty = server.read().decode()      # needs error checking?
                                 Reshuffle(difficulty)
                                 flag = 1
                                 break
