@@ -52,7 +52,10 @@ Mkfile.old
 dkms.conf
 
 .DS_Store
-/Material
+/Material/GP05
+/Material/HTML.fld
+/Material/Check_list.txt
+/Material/GP05.zip
 DiscussionWS.docx
 .vscode
 .vs
