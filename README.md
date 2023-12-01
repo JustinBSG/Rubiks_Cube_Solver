@@ -12,7 +12,7 @@
 ## Installation and Setup
 1. Connecting all wires and components that shown on [HERE](Material/Image/).
 2. Downloading [Code for PC](Code/PC/) on your PC, recommending Windows OS.
-3. Freshing [Code for Camera Board](Code/Camera/) and [Code for Control Board](Code/Control/).
+3. Flashing [Code for Camera Board](Code/Camera/) and [Code for Control Board](Code/Control/).
 
 ## Components that We Used
 1. PC, running Windows OS *1
